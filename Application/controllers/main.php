@@ -1,8 +1,8 @@
 <?php
-class main
+class main extends controller
 {
     public function index()
     {
-        echo "index";
+        $this->render("uyeler/index", array('name' => "celal", 'surname' => "akyüz"));
     }
 }
