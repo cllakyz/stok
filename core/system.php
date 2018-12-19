@@ -14,12 +14,21 @@ class System
         } else{
             $url = NULL;
         }
-
+        /* Controlller Bulma*/
         if(file_exists($this->controllerPath."/".$url[0].".php")){
             $this->controller = $url[0];
         }
-
         require_once $this->controllerPath."/".$this->controller.".php";
-        $this->controller = new $this->controller;
+        if(class_exists($this->controller)){
+            $this->controller = new $this->controller;
+        } else{
+            exit("Böyle bir class bulunamadı");
+        }
+        /* Method Bulma*/
+        if(isset($url[1])){
+            if(method_exists($this->controller, $url[1])){
+                $this->method = $url[1];
+            }
+        }
     }
 }
