@@ -6,8 +6,14 @@ class uyeler
         echo "üyeler sınıfındasın";
     }
 
-    public function listele()
+    public function listele($id)
     {
         echo "üyeler listesi burada olacak";
+        echo $id;
+    }
+
+    public function goruntule()
+    {
+
     }
 }
