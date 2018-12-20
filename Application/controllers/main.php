@@ -3,6 +3,9 @@ class main extends controller
 {
     public function index()
     {
-        $this->render("index", array('name' => "celal", 'surname' => "akyüz"));
+        $this->render('site/header');
+        $this->render('site/sidebar');
+        $this->render('home');
+        $this->render('site/footer');
     }
 }
