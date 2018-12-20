@@ -1,2 +1,2 @@
 <?php
-echo "view/index";
+echo $name;
