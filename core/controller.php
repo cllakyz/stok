@@ -1,6 +1,13 @@
 <?php
 class controller
 {
+    public $session;
+
+    public function __construct()
+    {
+        $this->session = new session();
+    }
+
     public function render($file, array $param = [])
     {
         view::render($file, $param);
