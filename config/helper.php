@@ -20,4 +20,9 @@ class helper
         $text = trim($text);
         return $text;
     }
+
+    static function flashData($key, $value)
+    {
+        session::set(array($key => $value));
+    }
 }

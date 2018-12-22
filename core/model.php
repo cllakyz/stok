@@ -21,7 +21,7 @@ class model
         return DB::getRow($query, $data);
     }
 
-    public function get($query, $data=NULL)
+    public function getList($query, $data=NULL)
     {
         return DB::get($query, $data);
     }

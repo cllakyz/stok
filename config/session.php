@@ -11,12 +11,8 @@ class session extends model
         }
     }
 
-    static function getSession($key){
+    static function get($key){
         return isset($_SESSION[$key]) ? $_SESSION[$key] : false;
-    }
-
-    static function getAll(){
-        return !empty($_SESSION) ? $_SESSION : 'Session Not Found';
     }
 
     static function remove($key){
@@ -31,8 +27,14 @@ class session extends model
     {
         $out = false;
         if(self::exists('email') and self::exists('password')){
-            $userInfo = $this->getRow("SELECT * FROM uyeler WHERE email=? AND password=? AND status=1", array(self::getSession('email'),self::getSession('password')));
+            $userInfo = $this->getRow("SELECT * FROM uyeler WHERE email=? AND password=? AND status=1", array(self::get('email'),self::get('password')));
             if($userInfo){
+                $out = true;
+            }
+        } elseif(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
+            $userInfo = $this->getRow("SELECT * FROM uyeler WHERE email=? AND password=? AND status=1", array($_COOKIE['email'],$_COOKIE['password']));
+            if($userInfo){
+                self::set(array('email' => $_COOKIE['email'], 'password' => $_COOKIE['password']));
                 $out = true;
             }
         }
@@ -43,7 +45,7 @@ class session extends model
     {
         $out = false;
         if($this->isLogged()){
-            $out = $this->getRow("SELECT * FROM uyeler WHERE email=? AND password=? AND status=1", array(self::getSession('email'),self::getSession('password')));
+            $out = $this->getRow("SELECT * FROM uyeler WHERE email=? AND password=? AND status=1", array(self::get('email'),self::get('password')));
         }
         return $out;
     }
