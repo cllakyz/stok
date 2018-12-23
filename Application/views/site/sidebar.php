@@ -17,14 +17,14 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-pie-chart"></i>
-                    <span>KATEGORİLER</span>
+                    <span>Kategoriler</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?php echo SITE_URL."/category/add"; ?>"><i class="fa fa-circle-o"></i> Yeni Kategori Ekle</a></li>
-                    <li><a href="<?php echo SITE_URL."/category/list"; ?>"><i class="fa fa-circle-o"></i> Kategori Listesi</a></li>
+                    <li><a href="<?php echo SITE_URL."/category"; ?>"><i class="fa fa-circle-o"></i> Kategori Listesi</a></li>
                 </ul>
             </li>
 

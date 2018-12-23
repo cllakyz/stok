@@ -25,4 +25,11 @@ class helper
     {
         session::set(array($key => $value));
     }
+
+    static function p($data)
+    {
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+    }
 }
