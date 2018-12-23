@@ -27,12 +27,12 @@ class session extends model
     {
         $out = false;
         if(self::exists('email') and self::exists('password')){
-            $userInfo = $this->getRow("SELECT * FROM uyeler WHERE email=? AND password=? AND status=1", array(self::get('email'),self::get('password')));
+            $userInfo = $this->getRow("SELECT * FROM user WHERE email=? AND password=? AND status=1", array(self::get('email'),self::get('password')));
             if($userInfo){
                 $out = true;
             }
         } elseif(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
-            $userInfo = $this->getRow("SELECT * FROM uyeler WHERE email=? AND password=? AND status=1", array($_COOKIE['email'],$_COOKIE['password']));
+            $userInfo = $this->getRow("SELECT * FROM user WHERE email=? AND password=? AND status=1", array($_COOKIE['email'],$_COOKIE['password']));
             if($userInfo){
                 self::set(array('email' => $_COOKIE['email'], 'password' => $_COOKIE['password']));
                 $out = true;
@@ -45,7 +45,7 @@ class session extends model
     {
         $out = false;
         if($this->isLogged()){
-            $out = $this->getRow("SELECT * FROM uyeler WHERE email=? AND password=? AND status=1", array(self::get('email'),self::get('password')));
+            $out = $this->getRow("SELECT * FROM user WHERE email=? AND password=? AND status=1", array(self::get('email'),self::get('password')));
         }
         return $out;
     }

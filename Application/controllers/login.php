@@ -12,7 +12,7 @@ class login extends controller
             $email = helper::cleaner($_POST['email']);
             $password = helper::cleaner($_POST['password']);
             if($email != "" and $password != ""){
-                $control = $this->model("uyeModel")->control($email,$password);
+                $control = $this->model("userModel")->control($email,$password);
                 if($control){
                     if(isset($_POST['remember'])){
                         setcookie("email", $control->email, time() + 365*24*60*60, "/");
