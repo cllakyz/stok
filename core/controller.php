@@ -2,15 +2,22 @@
 class controller
 {
     public $session;
+    public $userInfo;
 
     public function __construct()
     {
         $this->session = new session();
+        $this->userInfo = $this->session->getUserInfo();
     }
 
-    public function render($file, array $param = [])
+    public function render($file, array $params = [])
     {
-        view::render($file, $param);
+        if(file_exists(VIEWS_PATH."/".$file.".php")){
+            extract($params);
+            require_once VIEWS_PATH."/".$file.".php";
+        } else{
+            exit($file." Görüntü Dosyası Bulunamadı");
+        }
     }
 
     public function model($file)
