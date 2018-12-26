@@ -239,5 +239,6 @@
 <script src="<?php echo JS_PATH; ?>/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo JS_PATH; ?>/demo.js"></script>
+<script src="<?php echo JS_PATH; ?>/main.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

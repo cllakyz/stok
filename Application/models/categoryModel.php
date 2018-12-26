@@ -10,15 +10,23 @@ class categoryModel extends model
         $this->zaman = date('Y-m-d H:i:s');
     }
 
+    public function categoryCheck($name)
+    {
+        return DB::getVar("SELECT COUNT(id) FROM $this->table WHERE name=? AND status != 2",array($name));
+    }
+
     public function add($name)
     {
+        if($this->categoryCheck($name)){
+            return false;
+        }
         return $this->insert("INSERT INTO $this->table SET name=?, create_date=?",array($name,$this->zaman));
     }
 
     public function categoryList()
     {
         $cikti = array();
-        $data = $this->getList("SELECT * FROM $this->table WHERE status=1");
+        $data = $this->getList("SELECT * FROM $this->table WHERE status != 2");
         foreach ($data as $d){
             $cikti[] = $d;
         }
