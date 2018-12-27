@@ -19,10 +19,22 @@ class productModel extends model
 
     public function add($name, $cat_id, $modifier)
     {
-        if($this->productCheck($name)){
-            return false;
-        }
         return DB::insert("INSERT INTO $this->table SET category_id=?, name=?, modifiers=?, create_date=?", array($cat_id, $name, $modifier, $this->zaman));
+    }
+
+    public function edit($id, $name, $cat_id, $modifier)
+    {
+        return DB::exec("UPDATE $this->table SET name=?, category_id=?, modifiers=?, update_date=? WHERE id=?", array($name, $cat_id, $modifier, $this->zaman, $id));
+    }
+
+    public function delete($id)
+    {
+        return DB::exec("DELETE FROM $this->table WHERE id=?", array($id));
+    }
+
+    public function info($id)
+    {
+        return DB::getRow("SELECT * FROM $this->table WHERE id=?", array($id));
     }
 
     public function productList()

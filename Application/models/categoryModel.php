@@ -17,9 +17,6 @@ class categoryModel extends model
 
     public function add($name)
     {
-        if($this->categoryCheck($name)){
-            return false;
-        }
         return $this->insert("INSERT INTO $this->table SET name=?, create_date=?",array($name,$this->zaman));
     }
 

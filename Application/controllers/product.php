@@ -53,4 +53,52 @@ class product extends controller
             exit("Hatalı Giriş");
         }
     }
+
+    public function edit($id)
+    {
+        $category = $this->model('categoryModel')->categoryList();
+        $data = $this->model('productModel')->info($id);
+        $this->render('site/header');
+        $this->render('site/sidebar');
+        $this->render('product/edit', array('category' => $category, 'data' => $data));
+        $this->render('site/footer');
+    }
+
+    public function update($id)
+    {
+        if($_POST){
+            $name = helper::cleaner($_POST['name']);
+            $category_id = intval(helper::cleaner($_POST['category_id']));
+            $modifiers = json_encode($_POST['modifier']);
+            if($name == "" || $category_id == ""){
+                helper::flashData("status", "Lütfen Tüm Alanları Eksiksiz Giriniz");
+                helper::redirect(SITE_URL."/product/edit/$id");
+                die;
+            }
+            $update = $this->model("productModel")->edit($id,$name,$category_id,$modifiers);
+            if($update){
+                helper::flashData("status", "Ürün Başarıyla Düzenlendi.");
+                helper::redirect(SITE_URL."/product/edit/$id");
+                die;
+            } else{
+                helper::flashData("status", "Ürün Düzenlenemedi");
+                helper::redirect(SITE_URL."/product/edit/$id");
+                die;
+            }
+        } else{
+            exit("Hatalı Giriş");
+        }
+    }
+
+    public function delete($id)
+    {
+        $delete = $this->model('productModel')->delete($id);
+        if($delete){
+            helper::flashData("status", "Ürün Başarıyla Silindi.");
+        } else{
+            helper::flashData("status", "Ürün Silinemedi.");
+        }
+        helper::redirect(SITE_URL."/product");
+        die;
+    }
 }
