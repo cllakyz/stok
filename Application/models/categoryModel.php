@@ -10,11 +10,6 @@ class categoryModel extends model
         $this->zaman = date('Y-m-d H:i:s');
     }
 
-    public function categoryCheck($name)
-    {
-        return DB::getVar("SELECT COUNT(id) FROM $this->table WHERE name=? AND status != 2",array($name));
-    }
-
     public function add($name)
     {
         return $this->insert("INSERT INTO $this->table SET name=?, create_date=?",array($name,$this->zaman));

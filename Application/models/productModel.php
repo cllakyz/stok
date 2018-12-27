@@ -12,11 +12,6 @@ class productModel extends model
         $this->zaman = date('Y-m-d H:i:s');
     }
 
-    public function productCheck($name)
-    {
-        return DB::getVar("SELECT COUNT(id) FROM $this->table WHERE name=? AND status != 2",array($name));
-    }
-
     public function add($name, $cat_id, $modifier)
     {
         return DB::insert("INSERT INTO $this->table SET category_id=?, name=?, modifiers=?, create_date=?", array($cat_id, $name, $modifier, $this->zaman));
