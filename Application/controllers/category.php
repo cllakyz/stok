@@ -69,7 +69,7 @@ class category extends controller
                 helper::redirect(SITE_URL."/category/edit/$id");
                 die;
             }
-            $update = $this->model("categoryModel")->categoryUpdate($id,$name);
+            $update = $this->model("categoryModel")->categoryEdit($id,$name);
             if($update){
                 helper::flashData("status", "Kategori Başarıyla Düzenlendi.");
                 helper::redirect(SITE_URL."/category/edit/$id");

@@ -30,7 +30,7 @@ class categoryModel extends model
         return $this->getRow("SELECT * FROM $this->table WHERE id = ?", array($id));
     }
 
-    public function categoryUpdate($id,$name)
+    public function categoryEdit($id,$name)
     {
         return $this->exec("UPDATE $this->table SET name = ?, update_date = ? WHERE id = ?", array($name, $this->zaman, $id));
     }
