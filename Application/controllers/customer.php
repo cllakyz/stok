@@ -70,11 +70,44 @@ class customer extends controller
 
     public function update($id)
     {
-
+        if($_POST){
+            $name = helper::cleaner($_POST['name']);
+            $surname = helper::cleaner($_POST['surname']);
+            $email = helper::cleaner($_POST['email']);
+            $phone = helper::cleaner($_POST['phone']);
+            $tc_no = helper::cleaner($_POST['tc_no']);
+            $company = helper::cleaner($_POST['company']);
+            $address = helper::cleaner($_POST['address']);
+            $note = helper::cleaner($_POST['note']);
+            if($name == "" || $surname == "" || $email == "" || $phone == "" || $tc_no == "" || $company == "" || $address == ""){
+                helper::flashData("status", "Lütfen Tüm Alanları Eksiksiz Giriniz");
+                helper::redirect(SITE_URL."/customer/edit/$id");
+                die;
+            }
+            $add = $this->model("customerModel")->customerEdit($id, $name, $surname, $email, $phone, $tc_no, $company, $address, $note);
+            if($add){
+                helper::flashData("status", "Müşteri Bilgileri Başarıyla Düzenlendi.");
+                helper::redirect(SITE_URL."/customer/edit/$id");
+                die;
+            } else{
+                helper::flashData("status", "Müşteri Bilgileri Düzenlenemedi");
+                helper::redirect(SITE_URL."/customer/edit/$id");
+                die;
+            }
+        } else{
+            exit("Hatalı Giriş");
+        }
     }
 
     public function delete($id)
     {
-
+        $delete = $this->model('customerModel')->customerDelete($id);
+        if($delete){
+            helper::flashData("status", "Müşteri Başarıyla Silindi.");
+        } else{
+            helper::flashData("status", "Müşteri Silinemedi.");
+        }
+        helper::redirect(SITE_URL."/customer");
+        die;
     }
 }
