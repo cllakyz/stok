@@ -39,7 +39,7 @@ class product extends controller
                 helper::redirect(SITE_URL."/product/add");
                 die;
             }
-            $add = $this->model("productModel")->add($name,$category_id,$modifiers);
+            $add = $this->model("productModel")->productAdd($name,$category_id,$modifiers);
             if($add){
                 helper::flashData("status", "Ürün Başarıyla Eklendi.");
                 helper::redirect(SITE_URL."/product/add");
@@ -57,7 +57,7 @@ class product extends controller
     public function edit($id)
     {
         $category = $this->model('categoryModel')->categoryList();
-        $data = $this->model('productModel')->info($id);
+        $data = $this->model('productModel')->productInfo($id);
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('product/edit', array('category' => $category, 'data' => $data));
@@ -75,7 +75,7 @@ class product extends controller
                 helper::redirect(SITE_URL."/product/edit/$id");
                 die;
             }
-            $update = $this->model("productModel")->edit($id,$name,$category_id,$modifiers);
+            $update = $this->model("productModel")->productEdit($id,$name,$category_id,$modifiers);
             if($update){
                 helper::flashData("status", "Ürün Başarıyla Düzenlendi.");
                 helper::redirect(SITE_URL."/product/edit/$id");
@@ -92,7 +92,7 @@ class product extends controller
 
     public function delete($id)
     {
-        $delete = $this->model('productModel')->delete($id);
+        $delete = $this->model('productModel')->productDelete($id);
         if($delete){
             helper::flashData("status", "Ürün Başarıyla Silindi.");
         } else{

@@ -36,7 +36,7 @@ class category extends controller
                 helper::redirect(SITE_URL."/category/add");
                 die;
             }
-            $add = $this->model("categoryModel")->add($name);
+            $add = $this->model("categoryModel")->categoryAdd($name);
             if($add){
                 helper::flashData("status", "Kategori Başarıyla Eklendi.");
                 helper::redirect(SITE_URL."/category/add");
@@ -53,7 +53,7 @@ class category extends controller
 
     public function edit($id)
     {
-        $data = $this->model('categoryModel')->info($id);
+        $data = $this->model('categoryModel')->categoryInfo($id);
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('category/edit', array('data' => $data));
@@ -69,7 +69,7 @@ class category extends controller
                 helper::redirect(SITE_URL."/category/edit/$id");
                 die;
             }
-            $update = $this->model("categoryModel")->update($id,$name);
+            $update = $this->model("categoryModel")->categoryUpdate($id,$name);
             if($update){
                 helper::flashData("status", "Kategori Başarıyla Düzenlendi.");
                 helper::redirect(SITE_URL."/category/edit/$id");
@@ -86,7 +86,7 @@ class category extends controller
 
     public function delete($id)
     {
-        $delete = $this->model('categoryModel')->delete($id);
+        $delete = $this->model('categoryModel')->categoryDelete($id);
         if($delete){
             helper::flashData("status", "Kategori Başarıyla Silindi.");
         } else{

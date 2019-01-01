@@ -12,22 +12,22 @@ class productModel extends model
         $this->zaman = date('Y-m-d H:i:s');
     }
 
-    public function add($name, $cat_id, $modifier)
+    public function productAdd($name, $cat_id, $modifier)
     {
         return DB::insert("INSERT INTO $this->table SET category_id=?, name=?, modifiers=?, create_date=?", array($cat_id, $name, $modifier, $this->zaman));
     }
 
-    public function edit($id, $name, $cat_id, $modifier)
+    public function productEdit($id, $name, $cat_id, $modifier)
     {
         return DB::exec("UPDATE $this->table SET name=?, category_id=?, modifiers=?, update_date=? WHERE id=?", array($name, $cat_id, $modifier, $this->zaman, $id));
     }
 
-    public function delete($id)
+    public function productDelete($id)
     {
         return DB::exec("DELETE FROM $this->table WHERE id=?", array($id));
     }
 
-    public function info($id)
+    public function productInfo($id)
     {
         return DB::getRow("SELECT * FROM $this->table WHERE id=?", array($id));
     }
