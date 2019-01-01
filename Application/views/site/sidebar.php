@@ -40,6 +40,19 @@
                     <li><a href="<?php echo SITE_URL."/product"; ?>"><i class="fa fa-circle-o"></i> Ürün Listesi</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Müşteriler</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo SITE_URL."/customer/add"; ?>"><i class="fa fa-circle-o"></i> Yeni Müşteri Ekle</a></li>
+                    <li><a href="<?php echo SITE_URL."/customer"; ?>"><i class="fa fa-circle-o"></i> Müşteri Listesi</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
