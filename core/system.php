@@ -34,6 +34,10 @@ class System
                 exit($this->method." method'u bulunamadı");
             }
         }
+        if(($this->method == "edit" || $this->method == "delete") && empty($url)){
+            helper::redirect(SITE_URL);
+            die;
+        }
         call_user_func_array(array($this->controller, $this->method), $url);
     }
 }
