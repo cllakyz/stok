@@ -1,520 +1,287 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Dashboard
-            <small>Control panel</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
+<!-- Page content -->
+<div class="container-fluid pt-8">
+    <div class="page-header mt-0 p-3">
+        <h3 class="mb-sm-0">Finance Dashboard</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#"><i class="fe fe-home"></i></a></li>
+            <li class="breadcrumb-item active" aria-current="page">Finance Dashboard</li>
         </ol>
-    </section>
 
-    <!-- Main content -->
-    <section class="content">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-aqua">
-                    <div class="inner">
-                        <h3>150</h3>
-
-                        <p>New Orders</p>
+    </div>
+    <div class="row finance-content">
+        <div class="col-xl-3 col-md-6">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h3 class="mb-3">Gross profit Margin</h3>
+                    <div class="chart-circle" data-value="0.75" data-thickness="10" data-color="#ad59ff"><canvas width="128" height="128"></canvas>
+                        <div class="chart-circle-value"><div class="text-xxl">75% </div></div>
                     </div>
-                    <div class="icon">
-                        <i class="ion ion-bag"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                        <p>Bounce Rate</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-yellow">
-                    <div class="inner">
-                        <h3>44</h3>
-
-                        <p>User Registrations</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3>65</h3>
-
-                        <p>Unique Visitors</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
         </div>
-        <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-7 connectedSortable">
-                <!-- Custom tabs (Charts with tabs)-->
-                <div class="nav-tabs-custom">
-                    <!-- Tabs within a box -->
-                    <ul class="nav nav-tabs pull-right">
-                        <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                        <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                        <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-                    </ul>
-                    <div class="tab-content no-padding">
-                        <!-- Morris chart - Sales -->
-                        <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-                        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h3 class="mb-3">Opex Ratio</h3>
+                    <div class="chart-circle" data-value="0.55" data-thickness="10" data-color="#00d9bf"><canvas width="128" height="128"></canvas>
+                        <div class="chart-circle-value"><div class="text-xxl">55%</div></div>
                     </div>
                 </div>
-                <!-- /.nav-tabs-custom -->
-
-                <!-- Chat box -->
-                <div class="box box-success">
-                    <div class="box-header">
-                        <i class="fa fa-comments-o"></i>
-
-                        <h3 class="box-title">Chat</h3>
-
-                        <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                            <div class="btn-group" data-toggle="btn-toggle">
-                                <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-body chat" id="chat-box">
-                        <!-- chat item -->
-                        <div class="item">
-                            <img src="<?php echo IMG_PATH; ?>/user4-128x128.jpg" alt="user image" class="online">
-
-                            <p class="message">
-                                <a href="#" class="name">
-                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                                    Mike Doe
-                                </a>
-                                I would like to meet you to discuss the latest news about
-                                the arrival of the new theme. They say it is going to be one the
-                                best themes on the market
-                            </p>
-                            <div class="attachment">
-                                <h4>Attachments:</h4>
-
-                                <p class="filename">
-                                    Theme-thumbnail-image.jpg
-                                </p>
-
-                                <div class="pull-right">
-                                    <button type="button" class="btn btn-primary btn-sm btn-flat">Open</button>
-                                </div>
-                            </div>
-                            <!-- /.attachment -->
-                        </div>
-                        <!-- /.item -->
-                        <!-- chat item -->
-                        <div class="item">
-                            <img src="<?php echo IMG_PATH; ?>/user3-128x128.jpg" alt="user image" class="offline">
-
-                            <p class="message">
-                                <a href="#" class="name">
-                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                                    Alexander Pierce
-                                </a>
-                                I would like to meet you to discuss the latest news about
-                                the arrival of the new theme. They say it is going to be one the
-                                best themes on the market
-                            </p>
-                        </div>
-                        <!-- /.item -->
-                        <!-- chat item -->
-                        <div class="item">
-                            <img src="<?php echo IMG_PATH; ?>/user2-160x160.jpg" alt="user image" class="offline">
-
-                            <p class="message">
-                                <a href="#" class="name">
-                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-                                    Susan Doe
-                                </a>
-                                I would like to meet you to discuss the latest news about
-                                the arrival of the new theme. They say it is going to be one the
-                                best themes on the market
-                            </p>
-                        </div>
-                        <!-- /.item -->
-                    </div>
-                    <!-- /.chat -->
-                    <div class="box-footer">
-                        <div class="input-group">
-                            <input class="form-control" placeholder="Type message...">
-
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.box (chat box) -->
-
-                <!-- TO DO List -->
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <i class="ion ion-clipboard"></i>
-
-                        <h3 class="box-title">To Do List</h3>
-
-                        <div class="box-tools pull-right">
-                            <ul class="pagination pagination-sm inline">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-                        <ul class="todo-list">
-                            <li>
-                                <!-- drag handle -->
-                                <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                                <!-- checkbox -->
-                                <input type="checkbox" value="">
-                                <!-- todo text -->
-                                <span class="text">Design a nice theme</span>
-                                <!-- Emphasis label -->
-                                <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                                <!-- General tools such as edit or delete-->
-                                <div class="tools">
-                                    <i class="fa fa-edit"></i>
-                                    <i class="fa fa-trash-o"></i>
-                                </div>
-                            </li>
-                            <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                                <input type="checkbox" value="">
-                                <span class="text">Make the theme responsive</span>
-                                <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                                <div class="tools">
-                                    <i class="fa fa-edit"></i>
-                                    <i class="fa fa-trash-o"></i>
-                                </div>
-                            </li>
-                            <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                                <input type="checkbox" value="">
-                                <span class="text">Let theme shine like a star</span>
-                                <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                                <div class="tools">
-                                    <i class="fa fa-edit"></i>
-                                    <i class="fa fa-trash-o"></i>
-                                </div>
-                            </li>
-                            <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                                <input type="checkbox" value="">
-                                <span class="text">Let theme shine like a star</span>
-                                <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                                <div class="tools">
-                                    <i class="fa fa-edit"></i>
-                                    <i class="fa fa-trash-o"></i>
-                                </div>
-                            </li>
-                            <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                                <input type="checkbox" value="">
-                                <span class="text">Check your messages and notifications</span>
-                                <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                                <div class="tools">
-                                    <i class="fa fa-edit"></i>
-                                    <i class="fa fa-trash-o"></i>
-                                </div>
-                            </li>
-                            <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                                <input type="checkbox" value="">
-                                <span class="text">Let theme shine like a star</span>
-                                <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                                <div class="tools">
-                                    <i class="fa fa-edit"></i>
-                                    <i class="fa fa-trash-o"></i>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer clearfix no-border">
-                        <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-                    </div>
-                </div>
-                <!-- /.box -->
-
-                <!-- quick email widget -->
-                <div class="box box-info">
-                    <div class="box-header">
-                        <i class="fa fa-envelope"></i>
-
-                        <h3 class="box-title">Quick Email</h3>
-                        <!-- tools box -->
-                        <div class="pull-right box-tools">
-                            <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
-                                    title="Remove">
-                                <i class="fa fa-times"></i></button>
-                        </div>
-                        <!-- /. tools -->
-                    </div>
-                    <div class="box-body">
-                        <form action="#" method="post">
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="emailto" placeholder="Email to:">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="subject" placeholder="Subject">
-                            </div>
-                            <div>
-                  <textarea class="textarea" placeholder="Message"
-                            style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="box-footer clearfix">
-                        <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                            <i class="fa fa-arrow-circle-right"></i></button>
-                    </div>
-                </div>
-
-            </section>
-            <!-- /.Left col -->
-            <!-- right col (We are only adding the ID to make the widgets sortable)-->
-            <section class="col-lg-5 connectedSortable">
-
-                <!-- Map box -->
-                <div class="box box-solid bg-light-blue-gradient">
-                    <div class="box-header">
-                        <!-- tools box -->
-                        <div class="pull-right box-tools">
-                            <button type="button" class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip"
-                                    title="Date range">
-                                <i class="fa fa-calendar"></i></button>
-                            <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse"
-                                    data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
-                                <i class="fa fa-minus"></i></button>
-                        </div>
-                        <!-- /. tools -->
-
-                        <i class="fa fa-map-marker"></i>
-
-                        <h3 class="box-title">
-                            Visitors
-                        </h3>
-                    </div>
-                    <div class="box-body">
-                        <div id="world-map" style="height: 250px; width: 100%;"></div>
-                    </div>
-                    <!-- /.box-body-->
-                    <div class="box-footer no-border">
-                        <div class="row">
-                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                <div id="sparkline-1"></div>
-                                <div class="knob-label">Visitors</div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                <div id="sparkline-2"></div>
-                                <div class="knob-label">Online</div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-xs-4 text-center">
-                                <div id="sparkline-3"></div>
-                                <div class="knob-label">Exists</div>
-                            </div>
-                            <!-- ./col -->
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                </div>
-                <!-- /.box -->
-
-                <!-- solid sales graph -->
-                <div class="box box-solid bg-teal-gradient">
-                    <div class="box-header">
-                        <i class="fa fa-th"></i>
-
-                        <h3 class="box-title">Sales Graph</h3>
-
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="box-body border-radius-none">
-                        <div class="chart" id="line-chart" style="height: 250px;"></div>
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer no-border">
-                        <div class="row">
-                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
-                                       data-fgColor="#39CCCC">
-
-                                <div class="knob-label">Mail-Orders</div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
-                                       data-fgColor="#39CCCC">
-
-                                <div class="knob-label">Online</div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-xs-4 text-center">
-                                <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
-                                       data-fgColor="#39CCCC">
-
-                                <div class="knob-label">In-Store</div>
-                            </div>
-                            <!-- ./col -->
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.box-footer -->
-                </div>
-                <!-- /.box -->
-
-                <!-- Calendar -->
-                <div class="box box-solid bg-green-gradient">
-                    <div class="box-header">
-                        <i class="fa fa-calendar"></i>
-
-                        <h3 class="box-title">Calendar</h3>
-                        <!-- tools box -->
-                        <div class="pull-right box-tools">
-                            <!-- button with a dropdown -->
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bars"></i></button>
-                                <ul class="dropdown-menu pull-right" role="menu">
-                                    <li><a href="#">Add new event</a></li>
-                                    <li><a href="#">Clear events</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">View calendar</a></li>
-                                </ul>
-                            </div>
-                            <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                        <!-- /. tools -->
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body no-padding">
-                        <!--The calendar -->
-                        <div id="calendar" style="width: 100%"></div>
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer text-black">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <!-- Progress bars -->
-                                <div class="clearfix">
-                                    <span class="pull-left">Task #1</span>
-                                    <small class="pull-right">90%</small>
-                                </div>
-                                <div class="progress xs">
-                                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                                </div>
-
-                                <div class="clearfix">
-                                    <span class="pull-left">Task #2</span>
-                                    <small class="pull-right">70%</small>
-                                </div>
-                                <div class="progress xs">
-                                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                                </div>
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-6">
-                                <div class="clearfix">
-                                    <span class="pull-left">Task #3</span>
-                                    <small class="pull-right">60%</small>
-                                </div>
-                                <div class="progress xs">
-                                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                                </div>
-
-                                <div class="clearfix">
-                                    <span class="pull-left">Task #4</span>
-                                    <small class="pull-right">40%</small>
-                                </div>
-                                <div class="progress xs">
-                                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                                </div>
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                </div>
-                <!-- /.box -->
-
-            </section>
-            <!-- right col -->
+            </div>
         </div>
-        <!-- /.row (main row) -->
-
-    </section>
-    <!-- /.content -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h3 class="mb-3">Operating Profit Margin</h3>
+                    <div class="chart-circle" data-value="0.30" data-thickness="10" data-color="#fc0"><canvas width="128" height="128"></canvas>
+                        <div class="chart-circle-value"><div class="text-xxl">30%</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h3 class="mb-3">Net Profit Margin</h3>
+                    <div class="chart-circle" data-value="0.45" data-thickness="10" data-color="#00b3ff"><canvas width="128" height="128"></canvas>
+                        <div class="chart-circle-value"><div class="text-xxl">45%</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-9">
+            <div class="card  shadow">
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+                            <h2 class="mb-0">Monthly Net Profit</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Chart -->
+                    <canvas id="finance-chart" class="chart-dropshadow h-315"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="">
+                <div class="">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card shadow bg-gradient-primary">
+                                <div class="card-body">
+                                    <div class="widget text-center">
+                                        <small class="text-white h3">Quick Ratio</small>
+                                        <h2 class="text-xxl text-white mb-0"> 0.74</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow bg-gradient-info">
+                                <div class="card-body">
+                                    <div class="widget text-center">
+                                        <small class="text-white h3">Current Ratio</small>
+                                        <h2 class="text-xxl text-white mb-0"> 1.68</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow bg-gradient-success">
+                                <div class="card-body">
+                                    <div class="widget text-center">
+                                        <small class="text-white h3">Cash Balance</small>
+                                        <h2 class="text-xxl text-white mb-0"><i class="fas fa-dollar-sign"></i> 1,35,265</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card  shadow">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+                                    <h2 class="mb-0">Return On Assets</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body finance-chart">
+                            <div class="finance-ratio ">
+                                25%
+                            </div>
+                            <!-- Chart -->
+                            <canvas id="finance-chart1" class="chart-dropshadow mt-5 h-200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card  shadow">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+                                    <h2 class="mb-0">Working Capital Ratio</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body finance-chart">
+                            <div class="finance-ratio ">
+                                0.5:1
+                            </div>
+                            <!-- Chart -->
+                            <canvas id="finance-chart2" class="chart-dropshadow mt-5 h-200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card  shadow">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+                                    <h2 class="mb-0">Return On Equity</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body finance-chart">
+                            <div class="finance-ratio ">
+                                32%
+                            </div>
+                            <!-- Chart -->
+                            <canvas id="finance-chart3" class="chart-dropshadow mt-5 h-200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+                                    <h2 class="mb-0">Debit Equity Ratio</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body finance-chart">
+                            <div class="finance-ratio ">
+                                0.8:1
+                            </div>
+                            <!-- Chart -->
+                            <canvas id="finance-chart4" class="chart-dropshadow mt-5 h-200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card  shadow">
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+                            <h2 class="mb-0">Balance sheet</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="card-body">
+                        <div class="grid-margin">
+                            <div class="">
+                                <div class="table-responsive balance-sheet">
+                                    <table class="table card-table table-bordered  text-nowrap align-items-center">
+                                        <tbody>
+                                        <tr>
+                                            <td class=" text-lg font-weight-700">Total Assets</td>
+                                            <td class="font-weight-700 text-lg">$ 78,25,256</td>
+                                            <td class=""><span class="bar-chart w-9" data-peity='{ "fill": ["#ad59ff","#00d9bf"]}'>2,3,5,3,2,3,4,5,6</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-sm font-weight-700">Current Assets</td>
+                                            <td class="font-weight-700">$ 45,26,356</td>
+                                            <td class="w-100"><span class="bar-chart w-9" data-peity='{ "fill": ["#ad59ff","#00d9bf"]}'>3,4,5,6,2,3,5,3,2</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-sm">Cash</td>
+                                            <td>$ 12,78,256</td>
+                                            <td class="w-100"><span class="bar-chart w-9" data-peity='{ "fill": ["#ad59ff","#00d9bf"]}'>2,4,5,6,3,5,3,2,3</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-sm">Account Receivable</td>
+                                            <td>$ 15,45,325</td>
+                                            <td class="w-100"><span class="bar-chart w-9" data-peity='{ "fill": ["#ad59ff","#00d9bf"]}'>5,3,2,3,4,5,6,2,3</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-sm">Invests</td>
+                                            <td>$ 17,02,775</td>
+                                            <td class="w-100"><span class="bar-chart w-9" data-peity='{ "fill": ["#ad59ff","#00d9bf"]}'>3,2,3,4,5,6,2,3,5</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-sm font-weight-700">Long Term Assets</td>
+                                            <td class="font-weight-700">$ 32,98,900</td>
+                                            <td class="w-100"><span class="bar-chart w-9" data-peity='{ "fill": ["#ad59ff","#00d9bf"]}'>3,2,3,4,5,6,2,3,5</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="table-responsive mt-4 balance-sheet">
+                                    <table class="table card-table table-bordered table-vcenter text-nowrap align-items-center">
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-lg font-weight-700">Total Liabilities</td>
+                                            <td class="font-weight-700 text-lg">$ 78,25,256</td>
+                                            <td><span class="bar-chart" data-peity='{ "fill": ["#ad59ff","#00d9bf"]}'>4,5,6,2,3,5,3,2,3</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-sm font-weight-700">Current Liabilities</td>
+                                            <td class="font-weight-700">$45,62,235</td>
+                                            <td><span class="bar-chart" data-peity='{ "fill": ["#ad59ff","#00d9bf"]}'>4,5,2,2,3,4,5,6</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-sm font-weight-700">Share Holder Equity</td>
+                                            <td class="font-weight-700">$ 32,63,021</td>
+                                            <td class=""><span class="bar-chart w-9" data-peity='{ "fill": ["#ad59ff","#00d9bf"]}'>3,2,3,4,5,6,2,3</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="row align-items-center justify-content-xl-between">
+            <div class="col-xl-6">
+                <div class="copyright text-center text-xl-left text-muted">
+                    <p class="text-sm font-weight-500">Copyright 2018 © All Rights Reserved. Adon Dashboard Template</p>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <p class="float-right text-sm font-weight-500">Designed &amp; Passion With: <a href="#">Spurko</a></p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer -->
 </div>
-<!-- /.content-wrapper -->

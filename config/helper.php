@@ -32,4 +32,17 @@ class helper
         print_r($data);
         echo "</pre>";
     }
+
+    static function ajaxResponse($status_code, $status_text, $data=null){
+        if($status_code == '' || $status_text == ''){
+            return false;
+        }else{
+            if(!is_null($data) && is_array($data)){
+                $return_array = array('status_code' => $status_code, 'status_text' => $status_text, 'data' => $data);
+            }else{
+                $return_array = array('status_code' => $status_code, 'status_text' => $status_text);
+            }
+            return json_encode($return_array);
+        }
+    }
 }

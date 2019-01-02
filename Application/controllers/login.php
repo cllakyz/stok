@@ -19,20 +19,19 @@ class login extends controller
                         setcookie("password", $control->password, time() + 365*24*60*60, "/");
                     }
                     session::set(array('email' => $control->email, 'password' => $control->password));
-                    helper::redirect(SITE_URL);
+                    echo helper::ajaxResponse(100, "Giriş Başarılı");
                     die;
                 } else{
-                    helper::flashData("status", "Lütfen E-Mail Adresinizi veya Parolanızı Tekrar Giriniz");
-                    helper::redirect(SITE_URL."/login");
+                    echo helper::ajaxResponse(101, "Lütfen E-Mail Adresinizi veya Parolanızı Tekrar Giriniz");
                     die;
                 }
             } else{
-                helper::flashData("status", "Lütfen Tüm Alanları Eksiksiz Giriniz");
-                helper::redirect(SITE_URL."/login");
+                echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
             }
         } else{
-            exit("Hatalı Giriş");
+            echo helper::ajaxResponse(101, "Hatalı Giriş");
+            die;
         }
     }
 }

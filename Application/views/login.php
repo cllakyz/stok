@@ -6,91 +6,84 @@ if($session->isLogged()){
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="tr" dir="ltr">
+
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Log in</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="<?php echo BOWER_PATH; ?>/bootstrap/dist/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo BOWER_PATH; ?>/font-awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo BOWER_PATH; ?>/Ionicons/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo CSS_PATH; ?>/AdminLTE.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="<?php echo PLUGIN_PATH; ?>/iCheck/square/blue.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Fully Responsive Bootstrap 4 Admin Dashboard Template">
+    <meta name="author" content="Creative Tim">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- Title -->
+    <title>Adon - Creative Admin Multipurpose Responsive Dashboard Template</title>
 
-    <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!-- Favicon -->
+    <link href="<?php echo IMG_PATH; ?>/brand/favicon.png" rel="icon" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="<?php echo CSS_PATH; ?>/icons.css" rel="stylesheet">
+
+    <!--Bootstrap.min css-->
+    <link rel="stylesheet" href="<?php echo PLUGIN_PATH; ?>/bootstrap/css/bootstrap.min.css">
+
+    <!-- Adon CSS -->
+    <link href="<?php echo CSS_PATH; ?>/dashboard.css" rel="stylesheet" type="text/css">
+
+    <!-- Single-page CSS -->
+    <link href="<?php echo PLUGIN_PATH; ?>/single-page/css/main.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS_PATH; ?>/iziToast.min.css" rel="stylesheet" type="text/css">
+
+    <script>
+        var site_url = "<?php echo SITE_URL; ?>/";
+    </script>
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-        <a href="<?php echo SITE_URL; ?>"><b>Stok</b>Takip</a>
-    </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-        <?php
-        if(session::get("status") != ""){ ?>
-            <p class="login-box-msg"><?php echo session::get("status"); ?></p>
-        <?php
-        }
-        ?>
-        <form action="<?php echo SITE_URL."/login/send"; ?>" method="post">
-            <div class="form-group has-feedback">
-                <input type="email" name="email" class="form-control" placeholder="Email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-                <input type="password" name="password" class="form-control" placeholder="Parola">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox" name="remember"> Beni Hatırla
-                        </label>
-                    </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Giriş Yap</button>
-                </div>
-                <!-- /.col -->
-            </div>
-        </form>
-        <!-- /.social-auth-links -->
-    </div>
-    <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
 
-<!-- jQuery 3 -->
-<script src="<?php echo BOWER_PATH; ?>/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?php echo BOWER_PATH; ?>/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="<?php echo PLUGIN_PATH; ?>/iCheck/icheck.min.js"></script>
-<script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' /* optional */
-        });
-    });
-</script>
+<body class="bg-gradient-primary">
+<div class="limiter">
+    <div class="container-login100">
+
+        <div class="wrap-login100 p-5">
+            <form id="login_form" class="login100-form validate-form" action="<?php echo SITE_URL."/login/send"; ?>">
+                <div class="logo-img text-center pb-3">
+                    <img src="<?php echo IMG_PATH; ?>/brand/logo-dark1.png" alt="logo-img">
+                </div>
+                <span class="login100-form-title">Üye Girişi</span>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100 required" type="text" name="email" placeholder="Email">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100 required" type="password" name="password" placeholder="Parola">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button type="button" class="login100-form-btn btn-primary" onclick="post_form('login_form')">Giriş Yap</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Adon Scripts -->
+<!-- Core -->
+<script src="<?php echo PLUGIN_PATH; ?>/jquery/dist/jquery.min.js"></script>
+<script src="<?php echo JS_PATH; ?>/popper.js"></script>
+<script src="<?php echo PLUGIN_PATH; ?>/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo JS_PATH; ?>/iziToast.min.js"></script>
+<script src="<?php echo JS_PATH; ?>/main.js?v=<?php echo time(); ?>"></script>
+
 </body>
+
 </html>
