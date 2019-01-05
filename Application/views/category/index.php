@@ -13,8 +13,8 @@
                                 <th>ID</th>
                                 <th>Kategori Adı</th>
                                 <th>Eklenme Tarihi</th>
-                                <th>Durumu</th>
-                                <th>İşlemler</th>
+                                <th class="text-center">Durumu</th>
+                                <th class="text-right">İşlemler</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -25,10 +25,20 @@
                                         <td><?php echo $d->id; ?></td>
                                         <td><?php echo $d->name; ?></td>
                                         <td><?php echo date('d/m/Y H:i', strtotime($d->create_date)); ?></td>
-                                        <td><span class="label label-<?php echo $d->status == 1 ? "success" : "danger"; ?>"><?php echo $d->status == 1 ? "Aktif" : "Pasif"; ?></span></td>
-                                        <td>
-                                            <a href="<?php echo SITE_URL."/category/edit/$d->id"; ?>" class="btn btn-success">Düzenle</a>
-                                            <a href="<?php echo SITE_URL."/category/delete/$d->id"; ?>" class="btn btn-danger">Sil</a>
+                                        <td class="text-center">
+                                            <label class="custom-switch">
+                                                <input type="checkbox" class="custom-switch-input"<?php echo $d->status == 1 ? " checked" : NULL; ?>>
+                                                <span class="custom-switch-indicator custom-switch-indicator-lg"></span>
+                                                <span class="custom-switch-description active">Aktif</span><span class="custom-switch-description passive">Pasif</span>
+                                            </label>
+                                        </td>
+                                        <td class="text-right">
+                                            <a class="btn btn-sm btn-icon btn-pill btn-success mt-1 mb-1" href="<?php echo SITE_URL."/category/edit/$d->id"; ?>" data-toggle="tooltip" data-placement="top" title="Düzenle">
+                                                <span class="btn-inner--icon"><i class="fe fe-edit"></i></span>
+                                            </a>
+                                            <a class="btn btn-sm btn-icon btn-pill btn-danger mt-1 mb-1" data-toggle="tooltip" data-placement="top" title="Sil">
+                                                <span class="btn-inner--icon"><i class="fe fe-trash"></i></span>
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php

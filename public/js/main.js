@@ -1,3 +1,15 @@
+$(document).ready(function () {
+    $("a[href='#']").attr('href', 'javascript:;');
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    checkSwitch();
+
+    $(document).on('click', '.custom-switch-input', function () {
+        checkSwitch();
+    });
+});
+
 function notify(type, title, message) {
     var options = {
         title: title,
@@ -68,6 +80,13 @@ function post_form(form_id){
     });
 }
 
-$(document).ready(function () {
-    $("a[href='#']").attr('href', 'javascript:;');
-});
+function checkSwitch(){
+    var checkItem = $('.custom-switch-input');
+    if(checkItem.is(':checked')){
+        $('.custom-switch-description.active').fadeIn(0);
+        $('.custom-switch-description.passive').fadeOut(0);
+    } else{
+        $('.custom-switch-description.active').fadeOut(0);
+        $('.custom-switch-description.passive').fadeIn(0);
+    }
+}
