@@ -1,18 +1,14 @@
 $(function(e) {
 	'use strict';
-	$('#example').DataTable();
-	var table = $('#example1').DataTable();
-	$(document).on('click', 'button', function(e) {
-		var data = table.$('input, select').serialize();
-		alert("The following data would have been submitted to the server: \n\n" + data.substr(0, 120) + '...');
-		return false;
-	});
-	$('#example2').DataTable({
-		"scrollY": "200px",
-		"scrollCollapse": true,
-		"paging": false
-	});
-	$('#example3').DataTable({
+	$('#example_category').DataTable({
+		order: [[ 2, "desc" ]],
+		aoColumns: [
+			null,
+			null,
+			null,
+			{ "bSortable": false },
+			{ "bSortable": false }
+		],
 		responsive: {
 			details: {
 				display: $.fn.dataTable.Responsive.display.modal({

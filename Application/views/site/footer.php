@@ -18,6 +18,12 @@
 <script src="<?php echo PLUGIN_PATH; ?>/chart.js/dist/Chart.min.js"></script>
 <script src="<?php echo PLUGIN_PATH; ?>/chart.js/dist/Chart.extension.js"></script>
 
+<!-- Data tables -->
+<script src="<?php echo PLUGIN_PATH; ?>/datatable/jquery.dataTables.min.js"></script>
+<script src="<?php echo PLUGIN_PATH; ?>/datatable/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo PLUGIN_PATH; ?>/datatable/dataTables.responsive.min.js"></script>
+<script src="<?php echo PLUGIN_PATH; ?>/datatable/responsive.bootstrap4.min.js"></script>
+
 <!-- Fullside-menu Js-->
 <script src="<?php echo PLUGIN_PATH; ?>/toggle-sidebar/js/sidemenu.js"></script>
 
@@ -30,7 +36,13 @@
 
 <!-- Adon JS -->
 <script src="<?php echo JS_PATH; ?>/custom.js"></script>
-<script src="<?php echo JS_PATH; ?>/dashboard-finance.js"></script>
+<script src="<?php echo JS_PATH; ?>/datatable.js"></script>
+<?php
+if(helper::route(0) == ""){ ?>
+    <script src="<?php echo JS_PATH; ?>/dashboard-finance.js"></script>
+<?php
+}
+?>
 <script src="<?php echo JS_PATH; ?>/iziToast.min.js"></script>
 <script src="<?php echo JS_PATH; ?>/main.js?v=<?php echo time(); ?>"></script>
 <script>

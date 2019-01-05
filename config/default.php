@@ -3,6 +3,7 @@ define("CONTROLLERS_PATH", "Application/controllers");
 define("VIEWS_PATH", "Application/views");
 define("MODELS_PATH", "Application/models");
 
+define('PATH',str_replace('\\','/',$_SERVER['DOCUMENT_ROOT']));
 define('SITE_URL', 'http://dev.stok.com');
 define("CSS_PATH", SITE_URL."/public/css");
 define("JS_PATH", SITE_URL."/public/js");

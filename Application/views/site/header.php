@@ -25,6 +25,10 @@
     <!-- Dashboard CSS -->
     <link href="<?php echo CSS_PATH; ?>/dashboard.css" rel="stylesheet" type="text/css">
 
+    <!-- Data table css -->
+    <link href="<?php echo PLUGIN_PATH; ?>/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="<?php echo PLUGIN_PATH; ?>/datatable/responsivebootstrap4.min.css" rel="stylesheet" />
+
     <!-- Tabs CSS -->
     <link href="<?php echo PLUGIN_PATH; ?>/tabs/style.css" rel="stylesheet" type="text/css">
 

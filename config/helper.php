@@ -45,4 +45,10 @@ class helper
             return json_encode($return_array);
         }
     }
+
+    static function route($sira=0)
+    {
+        $a = explode('/', filter_var(rtrim(@$_GET['page'],'/')));
+        return @$a[$sira];
+    }
 }
