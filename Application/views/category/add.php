@@ -1,29 +1,27 @@
-<div class="content-wrapper">
-    <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Yeni Kategori Ekle</h3>
-                    </div>
-                    <?php
-                    if(session::get("status") != ""){
-                        echo session::get("status");
-                    }
-                    ?>
-                    <form role="form" action="<?php echo SITE_URL."/category/send"; ?>" method="post">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>Kategori Adı</label>
-                                <input type="text" name="name" class="form-control">
+<div class="container-fluid pt-8">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h2 class="mb-0">Kategori Ekle</h2>
+                </div>
+                <form id="category_add_form" action="<?php echo SITE_URL."/category/send"; ?>">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Kategori Adı</label>
+                                    <input type="text" class="form-control required" name="name">
+                                </div>
                             </div>
                         </div>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Ekle</button>
-                        </div>
-                    </form>
-                </div>
+                        <button type="button" class="mt-2 btn btn-block btn-secondary mt-1 mb-1" onclick="post_form('category_add_form')">EKLE</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+    <!-- Footer -->
+    <?php include PATH."/Application/views/site/foot-div.php"; ?>
+    <!-- Footer -->
 </div>

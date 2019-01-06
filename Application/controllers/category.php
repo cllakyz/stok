@@ -32,22 +32,20 @@ class category extends controller
         if($_POST){
             $name = helper::cleaner($_POST['name']);
             if($name == ""){
-                helper::flashData("status", "Lütfen Tüm Alanları Eksiksiz Giriniz");
-                helper::redirect(SITE_URL."/category/add");
+                echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
             }
             $add = $this->model("categoryModel")->categoryAdd($name);
             if($add){
-                helper::flashData("status", "Kategori Eklendi.");
-                helper::redirect(SITE_URL."/category/add");
+                echo helper::ajaxResponse(100, "Kategori Eklendi");
                 die;
             } else{
-                helper::flashData("status", "Kategori Eklenemedi");
-                helper::redirect(SITE_URL."/category/add");
+                echo helper::ajaxResponse(101, "Kategori Eklenemedi");
                 die;
             }
         } else{
-            exit("Hatalı Giriş");
+            echo helper::ajaxResponse(101, "Hatalı Giriş");
+            die;
         }
     }
 
@@ -65,22 +63,20 @@ class category extends controller
         if($_POST){
             $name = helper::cleaner($_POST['name']);
             if($name == ""){
-                helper::flashData("status", "Lütfen Tüm Alanları Eksiksiz Giriniz");
-                helper::redirect(SITE_URL."/category/edit/$id");
+                echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
             }
             $update = $this->model("categoryModel")->categoryEdit($id,$name);
             if($update){
-                helper::flashData("status", "Kategori Düzenlendi.");
-                helper::redirect(SITE_URL."/category/edit/$id");
+                echo helper::ajaxResponse(100, "Kategori Düzenlendi");
                 die;
             } else{
-                helper::flashData("status", "Kategori Düzenlenemedi");
-                helper::redirect(SITE_URL."/category/edit/$id");
+                echo helper::ajaxResponse(101, "Kategori Düzenlenemedi");
                 die;
             }
         } else{
-            exit("Hatalı Giriş");
+            echo helper::ajaxResponse(101, "Hatalı Giriş");
+            die;
         }
     }
 

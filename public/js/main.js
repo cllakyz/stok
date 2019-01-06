@@ -65,6 +65,7 @@ function post_form(form_id){
     this_form.find('.required').each(function () {
         if ($(this).val() == '') {
             /* value boş */
+            $(this).addClass('is-invalid');
             hata++;
         }
     });
