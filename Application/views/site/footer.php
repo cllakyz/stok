@@ -7,33 +7,28 @@
 <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
 <!-- Adon Scripts -->
-
 <!-- Core -->
 <script src="<?php echo PLUGIN_PATH; ?>/jquery/dist/jquery.min.js"></script>
 <script src="<?php echo JS_PATH; ?>/popper.js"></script>
 <script src="<?php echo PLUGIN_PATH; ?>/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo PLUGIN_PATH; ?>/chart-circle/circle-progress.min.js"></script>
-
 <!-- Optional JS -->
 <script src="<?php echo PLUGIN_PATH; ?>/chart.js/dist/Chart.min.js"></script>
 <script src="<?php echo PLUGIN_PATH; ?>/chart.js/dist/Chart.extension.js"></script>
-
 <!-- Data tables -->
 <script src="<?php echo PLUGIN_PATH; ?>/datatable/jquery.dataTables.min.js"></script>
 <script src="<?php echo PLUGIN_PATH; ?>/datatable/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo PLUGIN_PATH; ?>/datatable/dataTables.responsive.min.js"></script>
 <script src="<?php echo PLUGIN_PATH; ?>/datatable/responsive.bootstrap4.min.js"></script>
-
 <!-- Fullside-menu Js-->
 <script src="<?php echo PLUGIN_PATH; ?>/toggle-sidebar/js/sidemenu.js"></script>
-
 <!-- Custom scroll bar Js-->
 <script src="<?php echo PLUGIN_PATH; ?>/customscroll/jquery.mCustomScrollbar.concat.min.js"></script>
-
 <!-- peitychart -->
 <script src="<?php echo PLUGIN_PATH; ?>/peitychart/jquery.peity.min.js"></script>
 <script src="<?php echo PLUGIN_PATH; ?>/peitychart/peitychart.init.js"></script>
-
+<!-- Sweet alert Plugin -->
+<script src="<?php echo PLUGIN_PATH; ?>/sweet-alert/sweetalert.min.js"></script>
 <!-- Adon JS -->
 <script src="<?php echo JS_PATH; ?>/custom.js"></script>
 <script src="<?php echo JS_PATH; ?>/datatable.js"></script>

@@ -38,7 +38,7 @@ class category extends controller
             }
             $add = $this->model("categoryModel")->categoryAdd($name);
             if($add){
-                helper::flashData("status", "Kategori Başarıyla Eklendi.");
+                helper::flashData("status", "Kategori Eklendi.");
                 helper::redirect(SITE_URL."/category/add");
                 die;
             } else{
@@ -71,7 +71,7 @@ class category extends controller
             }
             $update = $this->model("categoryModel")->categoryEdit($id,$name);
             if($update){
-                helper::flashData("status", "Kategori Başarıyla Düzenlendi.");
+                helper::flashData("status", "Kategori Düzenlendi.");
                 helper::redirect(SITE_URL."/category/edit/$id");
                 die;
             } else{
@@ -84,15 +84,40 @@ class category extends controller
         }
     }
 
-    public function delete($id)
+    public function changeStatus()
     {
-        $delete = $this->model('categoryModel')->categoryDelete($id);
-        if($delete){
-            helper::flashData("status", "Kategori Başarıyla Silindi.");
+        if($_POST){
+            $id = helper::cleaner($_POST['id']);
+            $status = helper::cleaner($_POST['status']);
+            $update = $this->model("categoryModel")->categoryChangeStatus($id,$status);
+            if($update){
+                echo helper::ajaxResponse(100, "Kategori Durumu Düzenlendi");
+                die;
+            } else{
+                echo helper::ajaxResponse(101, "Kategori Durumu Düzenlenemedi");
+                die;
+            }
         } else{
-            helper::flashData("status", "Kategori Silinemedi.");
+            echo helper::ajaxResponse(101, "Hatalı Giriş");
+            die;
         }
-        helper::redirect(SITE_URL."/category");
-        die;
+    }
+
+    public function delete()
+    {
+        if($_POST){
+            $id = helper::cleaner($_POST['id']);
+            $delete = $this->model('categoryModel')->categoryDelete($id);
+            if($delete){
+                echo helper::ajaxResponse(100, "Kategori Silindi");
+                die;
+            } else{
+                echo helper::ajaxResponse(101, "Kategori Silinemedi");
+                die;
+            }
+        } else{
+            echo helper::ajaxResponse(101, "Hatalı Giriş");
+            die;
+        }
     }
 }

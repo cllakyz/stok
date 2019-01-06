@@ -35,6 +35,11 @@ class categoryModel extends model
         return $this->exec("UPDATE $this->table SET name = ?, update_date = ? WHERE id = ?", array($name, $this->zaman, $id));
     }
 
+    public function categoryChangeStatus($id,$status)
+    {
+        return $this->exec("UPDATE $this->table SET status = ?, update_date = ? WHERE id = ?", array($status, $this->zaman, $id));
+    }
+
     public function categoryDelete($id)
     {
         return $this->exec("UPDATE $this->table SET status = 2, update_date = ? WHERE id = ?", array($this->zaman, $id));

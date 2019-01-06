@@ -34,7 +34,7 @@ class System
                 exit($this->method." method'u bulunamadı");
             }
         }
-        if(($this->method == "edit" || $this->method == "delete") && empty($url)){
+        if($this->method == "edit" && empty($url)){
             helper::redirect(SITE_URL);
             die;
         }

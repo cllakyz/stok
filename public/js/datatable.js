@@ -1,6 +1,9 @@
 $(function(e) {
 	'use strict';
 	$('#example_category').DataTable({
+		language:{
+			url: site_url + "/public/js/datatable-turkish.json"
+		},
 		order: [[ 2, "desc" ]],
 		aoColumns: [
 			null,

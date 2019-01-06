@@ -6,37 +6,30 @@
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <meta content="Fully Responsive Bootstrap 4 Admin Dashboard Template" name="description">
     <meta content="Spruko" name="author">
-
     <!-- Title -->
     <title>Adon - Creative Admin Multipurpose Responsive Dashboard Template</title>
-
     <!-- Favicon -->
     <link href="<?php echo IMG_PATH; ?>/brand/favicon.png" rel="icon" type="image/png">
-
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
-
     <!-- Icons -->
     <link href="<?php echo CSS_PATH; ?>/icons.css" rel="stylesheet">
-
     <!--Bootstrap.min css-->
     <link rel="stylesheet" href="<?php echo PLUGIN_PATH; ?>/bootstrap/css/bootstrap.min.css">
-
     <!-- Dashboard CSS -->
     <link href="<?php echo CSS_PATH; ?>/dashboard.css" rel="stylesheet" type="text/css">
-
     <!-- Data table css -->
     <link href="<?php echo PLUGIN_PATH; ?>/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href="<?php echo PLUGIN_PATH; ?>/datatable/responsivebootstrap4.min.css" rel="stylesheet" />
-
     <!-- Tabs CSS -->
     <link href="<?php echo PLUGIN_PATH; ?>/tabs/style.css" rel="stylesheet" type="text/css">
-
     <!-- Custom scroll bar css-->
     <link href="<?php echo PLUGIN_PATH; ?>/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
-
+    <!-- sweetalert css-->
+    <link href="<?php echo PLUGIN_PATH; ?>/sweet-alert/sweetalert.css" rel="stylesheet" />
     <!-- Sidemenu Css -->
     <link href="<?php echo PLUGIN_PATH; ?>/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
+    <!-- iziToast Css -->
     <link href="<?php echo CSS_PATH; ?>/iziToast.min.css" rel="stylesheet" type="text/css">
 
     <script>
