@@ -32,6 +32,11 @@ class productModel extends model
         return DB::getRow("SELECT * FROM $this->table WHERE id = ?", array($id));
     }
 
+    public function productChangeStatus($id,$status)
+    {
+        return $this->exec("UPDATE $this->table SET status = ?, update_date = ? WHERE id = ?", array($status, $this->zaman, $id));
+    }
+
     public function productList()
     {
         return $this->getList("SELECT $this->table.*, $this->category_table.name AS category_name 

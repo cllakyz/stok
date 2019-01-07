@@ -15,10 +15,18 @@ class categoryModel extends model
         return $this->insert("INSERT INTO $this->table SET name = ?, create_date = ?",array($name,$this->zaman));
     }
 
-    public function categoryList()
+    public function categoryList($status=NULL)
     {
         $cikti = array();
-        $data = $this->getList("SELECT * FROM $this->table WHERE status != 2");
+        $sql_array = array();
+        if(!is_null($status)){
+            $sql_text = "status = ?";
+            $sql_array[] = $status;
+        } else{
+            $sql_text = "status != ?";
+            $sql_array[] = 2;
+        }
+        $data = $this->getList("SELECT * FROM $this->table WHERE $sql_text", $sql_array);
         foreach ($data as $d){
             $cikti[] = $d;
         }

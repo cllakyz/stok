@@ -27,6 +27,21 @@ $(document).ready(function () {
             });
         }
     });
+
+    $(document).on('click', '.btn-add-modifier', function (e) {
+        e.preventDefault();
+        var i = $('.modifier-name').length;
+        var temp = '<div class="row modifier-row"><div class="col-md-6"><label>Özellik Adı</label><input type="text" class="form-control modifier-name" name="modifier['+i+'][name]"></div>' +
+            '<div class="col-md-6"><label>Özellik Değeri</label><div class="input-group"><input type="text" class="form-control" name="modifier['+i+'][value]"><span class="input-group-append"><button class="btn btn-danger btn-remove-modifier" type="button">Sil</button></span></div></div></div>';
+        $('.modifier-div').append(temp);
+        i++;
+
+    });
+
+    $(document).on('click', '.btn-remove-modifier', function (e) {
+        e.preventDefault();
+        $(this).parents('.modifier-row').remove();
+    });
 });
 
 function notify(type, title, message) {

@@ -21,7 +21,7 @@ class product extends controller
 
     public function add()
     {
-        $category = $this->model('categoryModel')->categoryList();
+        $category = $this->model('categoryModel')->categoryList(1);
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('product/add', array('category' => $category));
@@ -35,28 +35,26 @@ class product extends controller
             $category_id = intval(helper::cleaner($_POST['category_id']));
             $modifiers = json_encode($_POST['modifier']);
             if($name == "" || $category_id == ""){
-                helper::flashData("status", "Lütfen Tüm Alanları Eksiksiz Giriniz");
-                helper::redirect(SITE_URL."/product/add");
+                echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
             }
             $add = $this->model("productModel")->productAdd($name,$category_id,$modifiers);
             if($add){
-                helper::flashData("status", "Ürün Başarıyla Eklendi.");
-                helper::redirect(SITE_URL."/product/add");
+                echo helper::ajaxResponse(100, "Ürün Eklendi");
                 die;
             } else{
-                helper::flashData("status", "Ürün Eklenemedi");
-                helper::redirect(SITE_URL."/product/add");
+                echo helper::ajaxResponse(101, "Ürün Eklenemedi");
                 die;
             }
         } else{
-            exit("Hatalı Giriş");
+            echo helper::ajaxResponse(101, "Hatalı Giriş");
+            die;
         }
     }
 
     public function edit($id)
     {
-        $category = $this->model('categoryModel')->categoryList();
+        $category = $this->model('categoryModel')->categoryList(1);
         $data = $this->model('productModel')->productInfo($id);
         $this->render('site/header');
         $this->render('site/sidebar');
@@ -71,34 +69,57 @@ class product extends controller
             $category_id = intval(helper::cleaner($_POST['category_id']));
             $modifiers = json_encode($_POST['modifier']);
             if($name == "" || $category_id == ""){
-                helper::flashData("status", "Lütfen Tüm Alanları Eksiksiz Giriniz");
-                helper::redirect(SITE_URL."/product/edit/$id");
+                echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
             }
             $update = $this->model("productModel")->productEdit($id,$name,$category_id,$modifiers);
             if($update){
-                helper::flashData("status", "Ürün Başarıyla Düzenlendi.");
-                helper::redirect(SITE_URL."/product/edit/$id");
+                echo helper::ajaxResponse(100, "Ürün Düzenlendi");
                 die;
             } else{
-                helper::flashData("status", "Ürün Düzenlenemedi");
-                helper::redirect(SITE_URL."/product/edit/$id");
+                echo helper::ajaxResponse(101, "Ürün Düzenlenemedi");
                 die;
             }
         } else{
-            exit("Hatalı Giriş");
+            echo helper::ajaxResponse(101, "Hatalı Giriş");
+            die;
         }
     }
 
-    public function delete($id)
+    public function changeStatus()
     {
-        $delete = $this->model('productModel')->productDelete($id);
-        if($delete){
-            helper::flashData("status", "Ürün Başarıyla Silindi.");
+        if($_POST){
+            $id = helper::cleaner($_POST['id']);
+            $status = helper::cleaner($_POST['status']);
+            $update = $this->model("productModel")->productChangeStatus($id,$status);
+            if($update){
+                echo helper::ajaxResponse(100, "Ürün Durumu Düzenlendi");
+                die;
+            } else{
+                echo helper::ajaxResponse(101, "Ürün Durumu Düzenlenemedi");
+                die;
+            }
         } else{
-            helper::flashData("status", "Ürün Silinemedi.");
+            echo helper::ajaxResponse(101, "Hatalı Giriş");
+            die;
         }
-        helper::redirect(SITE_URL."/product");
-        die;
+    }
+
+    public function delete()
+    {
+        if($_POST){
+            $id = helper::cleaner($_POST['id']);
+            $delete = $this->model('productModel')->productDelete($id);
+            if($delete){
+                echo helper::ajaxResponse(100, "Ürün Silindi");
+                die;
+            } else{
+                echo helper::ajaxResponse(101, "Ürün Silinemedi");
+                die;
+            }
+        } else{
+            echo helper::ajaxResponse(101, "Hatalı Giriş");
+            die;
+        }
     }
 }
