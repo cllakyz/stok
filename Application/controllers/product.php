@@ -56,6 +56,10 @@ class product extends controller
     {
         $category = $this->model('categoryModel')->categoryList(1);
         $data = $this->model('productModel')->productInfo($id);
+        if(!$category || !$data){
+            helper::redirect(SITE_URL."/product");
+            die;
+        }
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('product/edit', array('category' => $category, 'data' => $data));

@@ -60,6 +60,10 @@ class customer extends controller
     public function edit($id)
     {
         $data = $this->model("customerModel")->customerInfo($id);
+        if(!$data){
+            helper::redirect(SITE_URL."/customer");
+            die;
+        }
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('customer/edit', array('data' => $data));

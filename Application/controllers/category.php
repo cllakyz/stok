@@ -52,6 +52,10 @@ class category extends controller
     public function edit($id)
     {
         $data = $this->model('categoryModel')->categoryInfo($id);
+        if(!$data){
+            helper::redirect(SITE_URL."/category");
+            die;
+        }
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('category/edit', array('data' => $data));
