@@ -22,6 +22,10 @@ class product extends controller
     public function add()
     {
         $category = $this->model('categoryModel')->categoryList(1);
+        if(!$category){
+            $this->render(SITE_URL."/product");
+            die;
+        }
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('product/add', array('category' => $category));

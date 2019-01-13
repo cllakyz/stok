@@ -38,6 +38,17 @@
                     </li>
                 </ul>
             </li>
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-package"></i><span class="side-menu__label">Stok Yönetimi</span><i class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li>
+                        <a href="<?php echo SITE_URL; ?>/stock" class="slide-item">Stok İşlemleri</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo SITE_URL; ?>/stock/add" class="slide-item">Stok Ekle</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </aside>
