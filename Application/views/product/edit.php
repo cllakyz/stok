@@ -60,7 +60,7 @@
                             }
                             ?>
                         </div>
-                        <button type="button" class="mt-2 btn btn-block btn-secondary mt-1 mb-1" onclick="post_form('product_edit_form')">DÜZENLE</button>
+                        <button type="button" class="mt-2 btn btn-block btn-secondary mt-1 mb-1" onclick="post_form('product_edit_form')">GÜNCELLE</button>
                     </div>
                 </form>
             </div>

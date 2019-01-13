@@ -37,6 +37,11 @@ class customerModel extends model
         return $this->getRow("SELECT * FROM $this->table WHERE id = ?", array($id));
     }
 
+    public function customerChangeStatus($id,$status)
+    {
+        return $this->exec("UPDATE $this->table SET status = ?, update_date = ? WHERE id = ?", array($status, $this->zaman, $id));
+    }
+
     public function customerList()
     {
         return $this->getList("SELECT * FROM $this->table WHERE status != 2");
