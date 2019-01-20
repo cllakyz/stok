@@ -28,10 +28,10 @@
                                     <tr class="datatable-row row_<?php echo $d->id; ?>">
                                         <td><?php echo $d->id; ?></td>
                                         <td><?php echo $d->product_name; ?></td>
-                                        <td><?php echo $d->customer_name." ".$d->customer_surname; ?></td>
+                                        <td><?php echo $d->customer_id != "" ? $d->customer_name." ".$d->customer_surname : "-"; ?></td>
                                         <td><?php echo $d->action_type == 0 ? "Stok Giriş" : "Stok Çıkış"; ?></td>
                                         <td><?php echo $d->quantity; ?></td>
-                                        <td><?php echo $d->action_type == 0 ? "-".$d->price*$d->quantity : $d->price*$d->quantity; ?>₺</td>
+                                        <td><?php echo $d->action_type == 0 ? "-".helper::currencyPrice($d->price*$d->quantity) : helper::currencyPrice($d->price*$d->quantity); ?></td>
                                         <td><?php echo date('d/m/Y H:i', strtotime($d->create_date)); ?></td>
                                         <td class="text-center">
                                             <label class="custom-switch">

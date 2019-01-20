@@ -51,4 +51,9 @@ class helper
         $a = explode('/', filter_var(rtrim(@$_GET['page'],'/')));
         return @$a[$sira];
     }
+
+    static function currencyPrice($price, $currency="₺")
+    {
+        return number_format($price,2,".",",").$currency;
+    }
 }

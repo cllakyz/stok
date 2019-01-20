@@ -41,7 +41,7 @@ class stockModel extends model
 
     public function stockList()
     {
-        return $this->getList("SELECT $this->table.*, $this->product_table.name AS product_name, $this->customer_table.name AS customer_name, $this->customer_table.surname AS customer_surname 
+        return $this->getList("SELECT $this->table.*, $this->product_table.name AS product_name, $this->customer_table.name AS customer_name, $this->customer_table.surname AS customer_surname, $this->customer_table.id AS customer_id 
             FROM $this->table 
             LEFT JOIN $this->product_table 
             ON $this->table.product_id = $this->product_table.id

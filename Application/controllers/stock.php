@@ -35,7 +35,7 @@ class stock extends controller
             if(isset($_POST['customer_id']) && helper::cleaner($_POST['customer_id']) != ""){
                 $customer_id = helper::cleaner($_POST['customer_id']);
             } else{
-                $customer_id = 0;
+                $customer_id = NULL;
             }
             if($product_id == "" || $action_type == "" || $quantity == "" || $quantity == 0 || $price == ""){
                 echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
@@ -80,7 +80,7 @@ class stock extends controller
             if(isset($_POST['customer_id']) && helper::cleaner($_POST['customer_id']) != ""){
                 $customer_id = helper::cleaner($_POST['customer_id']);
             } else{
-                $customer_id = 0;
+                $customer_id = NULL;
             }
             if($product_id == "" || $action_type == "" || $quantity == "" || $quantity == 0 || $price == ""){
                 echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");

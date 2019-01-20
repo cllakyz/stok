@@ -35,7 +35,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Müşteri</label>
-                                    <select name="customer_id" class="form-control required">
+                                    <select name="customer_id" class="form-control">
                                         <option value="">Lütfen müşteri seçiniz</option>
                                         <?php
                                         if(count($customer) > 0){
