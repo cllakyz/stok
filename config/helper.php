@@ -54,6 +54,6 @@ class helper
 
     static function currencyPrice($price, $currency="₺")
     {
-        return number_format($price,2,".",",").$currency;
+        return $currency.number_format($price,2,".",",");
     }
 }

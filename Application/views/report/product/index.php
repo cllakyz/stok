@@ -14,9 +14,9 @@
                                 <th>ID</th>
                                 <th>Ürün Adı</th>
                                 <th>Giriş Adet</th>
-                                <th>Giriş Fiyat</th>
+                                <th>Toplam Gider</th>
                                 <th>Çıkış Adet</th>
-                                <th>Çıkış Fiyat</th>
+                                <th>Toplam Gelir</th>
                                 <th>Kalan Adet</th>
                                 <th>Kalan Fiyat</th>
                             </tr>
