@@ -29,7 +29,7 @@
                                         <td><?php echo $d->id; ?></td>
                                         <td><?php echo $d->name; ?></td>
                                         <td><?php echo $d->incoming_qty; ?></td>
-                                        <td><?php echo "-".helper::currencyPrice($d->incoming_sum); ?></td>
+                                        <td><?php echo helper::currencyPrice($d->incoming_sum); ?></td>
                                         <td><?php echo $d->outcoming_qty; ?></td>
                                         <td><?php echo helper::currencyPrice($d->outcoming_sum); ?></td>
                                         <td><?php echo $d->incoming_qty - $d->outcoming_qty; ?></td>
