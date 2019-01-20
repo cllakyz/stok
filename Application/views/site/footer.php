@@ -29,6 +29,8 @@
 <script src="<?php echo PLUGIN_PATH; ?>/peitychart/peitychart.init.js"></script>
 <!-- Sweet alert Plugin -->
 <script src="<?php echo PLUGIN_PATH; ?>/sweet-alert/sweetalert.min.js"></script>
+<!-- Date Picker-->
+<script src="<?php echo PLUGIN_PATH; ?>/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <!-- Adon JS -->
 <script src="<?php echo JS_PATH; ?>/custom.js"></script>
 <script src="<?php echo JS_PATH; ?>/datatable.js"></script>

@@ -28,4 +28,19 @@ class report extends controller
         $this->render('report/customer/index', array('data' => $data));
         $this->render('site/footer');
     }
+
+    public function date()
+    {
+        if(isset($_GET['start_date']) && $_GET['start_date'] != "" && isset($_GET['end_date']) && $_GET['end_date'] != ""){
+            $start_date = helper::cleaner($_GET['start_date']);
+            $end_date   = helper::cleaner($_GET['end_date']);
+            $data = $this->model('reportModel')->stockReportList($start_date, $end_date);
+        } else{
+            $data = $this->model('reportModel')->productReportList();
+        }
+        $this->render('site/header');
+        $this->render('site/sidebar');
+        $this->render('report/date/index', array('data' => $data));
+        $this->render('site/footer');
+    }
 }

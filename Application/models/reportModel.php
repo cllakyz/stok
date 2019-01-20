@@ -28,7 +28,32 @@ class reportModel extends model
                 $outPut[] = $d;
             }
         }
-        return $data;
+        return $outPut;
+    }
+
+    public function stockReportList($start, $end)
+    {
+        $start = date('Y-m-d', strtotime($start));
+        $end   = date('Y-m-d', strtotime($end));
+        $data = $this->getList("
+                SELECT $this->stock_table.*, $this->product_table.name FROM $this->stock_table 
+                INNER JOIN $this->product_table 
+                ON $this->product_table.id = $this->stock_table.product_id 
+                WHERE $this->stock_table.status != 2 
+                AND DATE($this->stock_table.create_date) BETWEEN ? AND ? GROUP BY $this->stock_table.product_id", array($start, $end));
+        $outPut = array();
+        if ($data){
+            foreach ($data as $d){
+                $incoming_data = $this->productStockActionReport($d->product_id);
+                $outcoming_data = $this->productStockActionReport($d->product_id, 1);
+                $d->incoming_sum = $incoming_data->sumPrice ? $incoming_data->sumPrice : 0;
+                $d->incoming_qty = $incoming_data->sumQuantity ? $incoming_data->sumQuantity : 0;
+                $d->outcoming_sum = $outcoming_data->sumPrice ? $outcoming_data->sumPrice : 0;
+                $d->outcoming_qty = $outcoming_data->sumQuantity ? $outcoming_data->sumQuantity : 0;
+                $outPut[] = $d;
+            }
+        }
+        return $outPut;
     }
 
     public function productStockActionReport($prd_id, $type=0)
@@ -52,7 +77,7 @@ class reportModel extends model
                 $outPut[] = $d;
             }
         }
-        return $data;
+        return $outPut;
     }
 
     public function customerStockActionReport($cust_id, $type=0)

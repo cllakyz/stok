@@ -3,6 +3,11 @@ $(document).ready(function () {
 
     $('[data-toggle="tooltip"]').tooltip();
 
+    $('.datepicker').datepicker({
+        showOtherMonths: true,
+        selectOtherMonths: true
+    });
+
     checkSwitch();
 
     $(document).on('click', '.custom-switch-input', function () {
