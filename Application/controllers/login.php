@@ -14,10 +14,8 @@ class login extends controller
             if($email != "" and $password != ""){
                 $control = $this->model("userModel")->control($email,$password);
                 if($control){
-                    if(isset($_POST['remember'])){
-                        setcookie("email", $control->email, time() + 365*24*60*60, "/");
-                        setcookie("password", $control->password, time() + 365*24*60*60, "/");
-                    }
+                    setcookie("email", $control->email, time() + 365*24*60*60, "/");
+                    setcookie("password", $control->password, time() + 365*24*60*60, "/");
                     session::set(array('email' => $control->email, 'password' => $control->password));
                     echo helper::ajaxResponse(100, "Giriş Başarılı");
                     die;
