@@ -34,12 +34,6 @@
 <!-- Adon JS -->
 <script src="<?php echo JS_PATH; ?>/custom.js"></script>
 <script src="<?php echo JS_PATH; ?>/datatable.js"></script>
-<?php
-if(helper::route(0) == ""){ ?>
-    <script src="<?php echo JS_PATH; ?>/dashboard-finance.js"></script>
-<?php
-}
-?>
 <script src="<?php echo JS_PATH; ?>/iziToast.min.js"></script>
 <script src="<?php echo JS_PATH; ?>/main.js?v=<?php echo time(); ?>"></script>
 <script>
