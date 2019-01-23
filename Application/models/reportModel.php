@@ -85,4 +85,16 @@ class reportModel extends model
         $data = $this->getRow("SELECT SUM(price)*quantity AS sumPrice, SUM(quantity) AS sumQuantity FROM $this->stock_table WHERE customer_id = ? AND action_type = ?", array($cust_id, $type));
         return $data;
     }
+
+    public function totalPriceReport($type=0)
+    {
+        $data = DB::getRow("SELECT SUM(quantity*price) AS sumPrice FROM stock WHERE action_type = ?", array($type));
+        return $data ? $data->sumPrice : 0;
+    }
+
+    public function totalCustomer()
+    {
+        $data = DB::getRow("SELECT COUNT(id) AS customer_count FROM customer WHERE status != ?", array(2));
+        return $data->customer_count;
+    }
 }

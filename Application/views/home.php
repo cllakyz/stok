@@ -10,25 +10,25 @@
         <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="card p-3 px-4 shadow">
                 <div>Toplam Gelir</div>
-                <div class="py-2 m-0 text-center h1 text-green">$14,320</div>
+                <div class="py-2 m-0 text-center h1 text-green"><?php echo helper::currencyPrice($this->model('reportModel')->totalPriceReport(1)); ?></div>
             </div>
         </div>
         <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="card p-3 px-4 shadow">
                 <div>Toplam Gider</div>
-                <div class="py-2 m-0 text-center h1 text-red">738</div>
+                <div class="py-2 m-0 text-center h1 text-red"><?php echo helper::currencyPrice($this->model('reportModel')->totalPriceReport(0)); ?></div>
             </div>
         </div>
         <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="card p-3 px-4 shadow">
-                <div>Kalan</div>
-                <div class="py-2 m-0 text-center h1 text-blue">$3,205</div>
+                <div>Fark</div>
+                <div class="py-2 m-0 text-center h1 text-blue"><?php echo helper::currencyPrice($this->model('reportModel')->totalPriceReport(1)-$this->model('reportModel')->totalPriceReport(0)); ?></div>
             </div>
         </div>
         <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="card p-3 px-4 shadow">
                 <div>Toplam Ürün</div>
-                <div class="py-2 m-0 text-center h1 text-yellow">118</div>
+                <div class="py-2 m-0 text-center h1 text-yellow"><?php echo $this->model('reportModel')->totalCustomer(); ?></div>
             </div>
         </div>
     </div>
