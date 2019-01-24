@@ -31,6 +31,20 @@
                                         <option value="1">Stok Çıkış</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>Kasa</label>
+                                    <select name="safe_id" class="form-control">
+                                        <option value="">Lütfen kasa seçiniz</option>
+                                        <?php
+                                        if(count($safe) > 0){
+                                            foreach ($safe as $s){ ?>
+                                                <option value="<?php echo $s->id; ?>"><?php echo $s->name; ?></option>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">

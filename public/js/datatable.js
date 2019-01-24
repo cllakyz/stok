@@ -88,8 +88,9 @@ $(function(e) {
 		language:{
 			url: site_url + "/public/js/datatable-turkish.json"
 		},
-		order: [[ 6, "desc" ]],
+		order: [[ 7, "desc" ]],
 		aoColumns: [
+			null,
 			null,
 			null,
 			null,

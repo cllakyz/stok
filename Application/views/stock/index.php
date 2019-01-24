@@ -13,6 +13,7 @@
                                 <th>ID</th>
                                 <th>Ürün Adı</th>
                                 <th>Ad Soyad</th>
+                                <th>Kasa Adı</th>
                                 <th>İşlem Tipi</th>
                                 <th>Adet</th>
                                 <th>Toplam Fiyat</th>
@@ -29,6 +30,7 @@
                                         <td><?php echo $d->id; ?></td>
                                         <td><?php echo $d->product_name; ?></td>
                                         <td><?php echo $d->customer_id != "" ? $d->customer_name." ".$d->customer_surname : "-"; ?></td>
+                                        <td><?php echo $d->safe_id != "" ? $d->safe_name : "-"; ?></td>
                                         <td><?php echo $d->action_type == 0 ? "Stok Giriş" : "Stok Çıkış"; ?></td>
                                         <td><?php echo $d->quantity; ?></td>
                                         <td><?php echo $d->action_type == 0 ? "-".helper::currencyPrice($d->price*$d->quantity) : helper::currencyPrice($d->price*$d->quantity); ?></td>
