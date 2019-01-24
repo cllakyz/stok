@@ -5,12 +5,14 @@ class reportModel extends model
     private $product_table;
     private $customer_table;
     private $stock_table;
+    private $safe_table;
 
     public function __construct()
     {
         $this->product_table = "product";
         $this->customer_table = "customer";
         $this->stock_table = "stock";
+        $this->safe_table = "safe";
     }
 
     public function productReportList()
@@ -58,7 +60,7 @@ class reportModel extends model
 
     public function productStockActionReport($prd_id, $type=0)
     {
-        $data = $this->getRow("SELECT SUM(price)*quantity AS sumPrice, SUM(quantity) AS sumQuantity FROM $this->stock_table WHERE product_id = ? AND action_type = ?", array($prd_id, $type));
+        $data = $this->getRow("SELECT SUM(price*quantity) AS sumPrice, SUM(quantity) AS sumQuantity FROM $this->stock_table WHERE product_id = ? AND action_type = ?", array($prd_id, $type));
         return $data;
     }
 
@@ -82,7 +84,7 @@ class reportModel extends model
 
     public function customerStockActionReport($cust_id, $type=0)
     {
-        $data = $this->getRow("SELECT SUM(price)*quantity AS sumPrice, SUM(quantity) AS sumQuantity FROM $this->stock_table WHERE customer_id = ? AND action_type = ?", array($cust_id, $type));
+        $data = $this->getRow("SELECT SUM(price*quantity) AS sumPrice, SUM(quantity) AS sumQuantity FROM $this->stock_table WHERE customer_id = ? AND action_type = ?", array($cust_id, $type));
         return $data;
     }
 
@@ -96,5 +98,29 @@ class reportModel extends model
     {
         $data = DB::getRow("SELECT COUNT(id) AS customer_count FROM customer WHERE status != ?", array(2));
         return $data->customer_count;
+    }
+
+    public function safeReportList()
+    {
+        $data = $this->getList("SELECT * FROM $this->safe_table WHERE status != 2");
+        $outPut = array();
+        if ($data){
+            foreach ($data as $d){
+                $incoming_data = $this->safeStockActionReport($d->id);
+                $outcoming_data = $this->safeStockActionReport($d->id, 1);
+                $d->incoming_sum = $incoming_data->sumPrice ? $incoming_data->sumPrice : 0;
+                $d->incoming_qty = $incoming_data->sumQuantity ? $incoming_data->sumQuantity : 0;
+                $d->outcoming_sum = $outcoming_data->sumPrice ? $outcoming_data->sumPrice : 0;
+                $d->outcoming_qty = $outcoming_data->sumQuantity ? $outcoming_data->sumQuantity : 0;
+                $outPut[] = $d;
+            }
+        }
+        return $outPut;
+    }
+
+    public function safeStockActionReport($safe_id, $type=0)
+    {
+        $data = $this->getRow("SELECT SUM(price*quantity) AS sumPrice, SUM(quantity) AS sumQuantity FROM $this->stock_table WHERE safe_id = ? AND action_type = ?", array($safe_id, $type));
+        return $data;
     }
 }

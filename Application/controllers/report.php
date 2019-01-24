@@ -43,4 +43,13 @@ class report extends controller
         $this->render('report/date/index', array('data' => $data));
         $this->render('site/footer');
     }
+
+    public function safe()
+    {
+        $data = $this->model('reportModel')->safeReportList();
+        $this->render('site/header');
+        $this->render('site/sidebar');
+        $this->render('report/safe/index', array('data' => $data));
+        $this->render('site/footer');
+    }
 }

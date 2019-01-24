@@ -44,6 +44,7 @@
                     <li><a href="<?php echo SITE_URL; ?>/report/product" class="slide-item">Ürün Raporları</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/report/customer" class="slide-item">Müşteri Raporları</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/report/date" class="slide-item">Tarih Bazlı Ürün Raporları</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/report/safe" class="slide-item">Kasa Raporları</a></li>
                 </ul>
             </li>
         </ul>

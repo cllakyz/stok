@@ -44,4 +44,9 @@ class productModel extends model
             $this->category_table ON $this->table.category_id = $this->category_table.id 
             WHERE $this->table.status != 2");
     }
+
+    public function productSearch($name)
+    {
+        return $this->getList("SELECT * FROM $this->table WHERE name like ? AND status != 2", array("%$name%"));
+    }
 }

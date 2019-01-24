@@ -61,24 +61,10 @@
                     <nav class="navbar navbar-top  navbar-expand-md navbar-dark" id="navbar-main">
                         <div class="container-fluid">
                             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
-
                             <!-- Brand -->
                             <a class="navbar-brand pt-0 d-md-none" href="index-2.html">
                                 <img src="<?php echo IMG_PATH; ?>/brand/logo-dark.png" class="navbar-brand-img" alt="...">
                             </a>
-
-                            <!-- Form -->
-                            <form class="navbar-search navbar-search-dark form-inline ml-3  mr-lg-auto">
-                                <div class="form-group mb-0">
-                                    <div class="input-group input-group-alternative">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                        </div><input class="form-control" placeholder="Search" type="text">
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- User -->
-
                             <!-- User -->
                             <ul class="navbar-nav align-items-center ">
                                 <li class="nav-item dropdown">
