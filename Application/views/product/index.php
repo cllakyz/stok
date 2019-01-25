@@ -4,6 +4,10 @@
             <div class="card shadow">
                 <div class="card-header">
                     <h2 class="mb-0">Ürün Listesi</h2>
+                    <a class="btn btn-icon btn-primary mt-1 mb-1" href="<?php echo SITE_URL."/excel/export"; ?>">
+                        <span class="btn-inner--icon"><i class="fa fa-file-excel"></i></span>
+                        <span class="btn-inner--text">Excel İndir</span>
+                    </a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
