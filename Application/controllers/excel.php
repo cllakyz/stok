@@ -7,6 +7,13 @@ class excel extends controller
         require_once PATH."/system/libs/Excel/PHPExcel.php";
         $Excel = new PHPExcel();
         $products = $this->model("productModel")->productList(1);
+        $Excel->getProperties()->setCreator($this->userInfo->name)
+            ->setLastModifiedBy($this->userInfo->name)
+            ->setTitle("Ürün listesi")
+            ->setSubject("Ürün listesi")
+            ->setDescription("Ürün listesi")
+            ->setKeywords("Ürün listesi")
+            ->setCategory("Ürün listesi");
         /* Excel sayfa adı */
         $Excel->getActiveSheet()->setTitle("Sayfa1");
         /* Kolon başlıkları */
@@ -24,24 +31,36 @@ class excel extends controller
             $Excel->getActiveSheet()->setCellValue("D$excelIndis", date('d.m.Y H:i', strtotime($p->create_date)));
             $excelIndis++;
         }
-
-        $Kaydet = PHPExcel_IOFactory::createWriter($Excel, "Excel2007");
-        //$fileName = "Product_".date('d/m/Y').".xlsx";
-        $fileName = rand(1,9000).".xlsx";
-        $Kaydet->save($fileName);
-
+        // Redirect output to a client’s web browser (Excel2007)
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="urun_listesi.xlsx"');
+        header('Cache-Control: max-age=0');
+        // If you're serving to IE 9, then the following may be needed
+        header('Cache-Control: max-age=1');
+        // If you're serving to IE over SSL, then the following may be needed
+        header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+        header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+        header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+        header ('Pragma: public'); // HTTP/1.0
+        $objWriter = PHPExcel_IOFactory::createWriter($Excel, 'Excel2007');
+        $objWriter->save('php://output');
+        exit;
     }
 
     public function productModifierText($data)
     {
         $returnArray = array();
-        $data = json_decode($data, true);
-        if(count($data) > 0){
-            foreach ($data as $d){
-                $returnArray[] = $d['name'].": ".$d['value'];
+        if($data != ""){
+            $data = json_decode($data, true);
+            if(count($data) > 0){
+                foreach ($data as $d){
+                    $returnArray[] = $d['name'].": ".$d['value'];
+                }
             }
+            return join(',', $returnArray);
+        } else{
+            return NULL;
         }
-        return join(',', $returnArray);
     }
 
     public function import()
