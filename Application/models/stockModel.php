@@ -18,22 +18,22 @@ class stockModel extends model
 
     public function stockAdd($prd_id, $cus_id, $safe_id, $type, $qty, $price)
     {
-        return DB::insert("INSERT INTO $this->table SET product_id = ?, customer_id = ?, safe_id = ?, action_type = ?, quantity = ?, price = ?, create_date = ?", array($prd_id, $cus_id, $safe_id, $type, $qty, $price, $this->zaman));
+        return $this->insert("INSERT INTO $this->table SET product_id = ?, customer_id = ?, safe_id = ?, action_type = ?, quantity = ?, price = ?, create_date = ?", array($prd_id, $cus_id, $safe_id, $type, $qty, $price, $this->zaman));
     }
 
     public function stockEdit($id, $prd_id, $cus_id, $safe_id, $type, $qty, $price)
     {
-        return DB::exec("UPDATE $this->table SET product_id = ?, customer_id = ?, safe_id = ?, action_type = ?, quantity = ?, price = ?, update_date = ? WHERE id = ?", array($prd_id, $cus_id, $safe_id, $type, $qty, $price, $this->zaman, $id));
+        return $this->exec("UPDATE $this->table SET product_id = ?, customer_id = ?, safe_id = ?, action_type = ?, quantity = ?, price = ?, update_date = ? WHERE id = ?", array($prd_id, $cus_id, $safe_id, $type, $qty, $price, $this->zaman, $id));
     }
 
     public function stockDelete($id)
     {
-        return DB::exec("UPDATE $this->table SET status = 2, update_date = ? WHERE id = ?", array($this->zaman, $id));
+        return $this->exec("UPDATE $this->table SET status = 2, update_date = ? WHERE id = ?", array($this->zaman, $id));
     }
 
     public function stockInfo($id)
     {
-        return DB::getRow("SELECT * FROM $this->table WHERE id = ?", array($id));
+        return $this->getRow("SELECT * FROM $this->table WHERE id = ?", array($id));
     }
 
     public function stockChangeStatus($id,$status)

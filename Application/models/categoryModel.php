@@ -10,8 +10,23 @@ class categoryModel extends model
         $this->zaman = date('Y-m-d H:i:s');
     }
 
+    public function categoryCheck($name, $not_in=NULL)
+    {
+        $sql_text = "";
+        $sql_array = array($name, 2);
+        if(!is_null($not_in)){
+            $sql_text .= " AND id != ?";
+            $sql_array[] = $not_in;
+        }
+        return $this->getVar("SELECT COUNT(id) FROM $this->table WHERE name = ? AND status != ?$sql_text", $sql_array);
+    }
+
     public function categoryAdd($name)
     {
+        $check = $this->categoryCheck($name);
+        if($check){
+            return false;
+        }
         return $this->insert("INSERT INTO $this->table SET name = ?, create_date = ?",array($name,$this->zaman));
     }
 
@@ -40,6 +55,10 @@ class categoryModel extends model
 
     public function categoryEdit($id,$name)
     {
+        $check = $this->categoryCheck($name,$id);
+        if($check > 0){
+            return false;
+        }
         return $this->exec("UPDATE $this->table SET name = ?, update_date = ? WHERE id = ?", array($name, $this->zaman, $id));
     }
 
