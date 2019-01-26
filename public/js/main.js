@@ -47,6 +47,34 @@ $(document).ready(function () {
         e.preventDefault();
         $(this).parents('.modifier-row').remove();
     });
+
+    $(document).on('submit', '.excel_import_form', function (e) {
+        e.preventDefault();
+        var thisForm = $(this);
+        if($('.dropify').val() == ""){
+            notify("info", "Uyarı", "Lütfen bir excel dosyası seçiniz");
+            return false;
+        }
+        $.ajax({
+            url: thisForm.attr('action'),
+            type: "POST",
+            data: new FormData(thisForm[0]),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(result){
+                result = $.parseJSON(result);
+                if(result.status_code == 100){
+                    notify("success", "Başarılı", result.status_text);
+                } else{
+                    notify("error", "Hata!", result.status_text);
+                }
+            },
+            error: function(er){
+                notify("error", "Hata!", er);
+            }
+        });
+    });
 });
 
 function notify(type, title, message) {

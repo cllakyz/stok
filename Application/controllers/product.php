@@ -37,7 +37,10 @@ class product extends controller
         if($_POST){
             $name = helper::cleaner($_POST['name']);
             $category_id = intval(helper::cleaner($_POST['category_id']));
-            $modifiers = json_encode($_POST['modifier']);
+            $modifiers = NULL;
+            if(isset($_POST['modifier']) && count($_POST['modifier']) > 0){
+                $modifiers = json_encode($_POST['modifier']);
+            }
             if($name == "" || $category_id == ""){
                 echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
@@ -75,7 +78,10 @@ class product extends controller
         if($_POST){
             $name = helper::cleaner($_POST['name']);
             $category_id = intval(helper::cleaner($_POST['category_id']));
-            $modifiers = json_encode($_POST['modifier']);
+            $modifiers = NULL;
+            if(isset($_POST['modifier']) && count($_POST['modifier']) > 0){
+                $modifiers = json_encode($_POST['modifier']);
+            }
             if($name == "" || $category_id == ""){
                 echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
@@ -129,5 +135,13 @@ class product extends controller
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
         }
+    }
+
+    public function import()
+    {
+        $this->render('site/header');
+        $this->render('site/sidebar');
+        $this->render('product/import');
+        $this->render('site/footer');
     }
 }

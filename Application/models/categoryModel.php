@@ -52,4 +52,13 @@ class categoryModel extends model
     {
         return $this->exec("UPDATE $this->table SET status = 2, update_date = ? WHERE id = ?", array($this->zaman, $id));
     }
+
+    public function getCategoryId($name)
+    {
+        $catId = $this->getVar("SELECT id FROM $this->table WHERE name = ?", array($name));
+        if(!$catId){
+            $catId = $this->categoryAdd($name);
+        }
+        return $catId;
+    }
 }

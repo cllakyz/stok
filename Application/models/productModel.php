@@ -12,9 +12,15 @@ class productModel extends model
         $this->zaman = date('Y-m-d H:i:s');
     }
 
-    public function productAdd($name, $cat_id, $modifier)
+    public function productAdd($name, $cat_id, $modifier, $date=NULL)
     {
-        return DB::insert("INSERT INTO $this->table SET category_id = ?, name = ?, modifiers = ?, create_date = ?", array($cat_id, $name, $modifier, $this->zaman));
+        $sql_array = array($cat_id, $name, $modifier);
+        if(!is_null($date)){
+            $sql_array[] = date('Y-m-d H:i:s', strtotime($date));
+        } else{
+            $sql_array[] = $this->zaman;
+        }
+        return DB::insert("INSERT INTO $this->table SET category_id = ?, name = ?, modifiers = ?, create_date = ?", $sql_array);
     }
 
     public function productEdit($id, $name, $cat_id, $modifier)

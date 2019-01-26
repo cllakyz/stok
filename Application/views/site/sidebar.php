@@ -15,6 +15,7 @@
                 <ul class="slide-menu">
                     <li><a href="<?php echo SITE_URL; ?>/product" class="slide-item">Ürünler</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/product/add" class="slide-item">Ürün Ekle</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/product/import" class="slide-item">Excel İle Ürün Ekle</a></li>
                 </ul>
             </li>
             <li class="slide">

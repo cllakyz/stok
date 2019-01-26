@@ -22,6 +22,8 @@
 <script src="<?php echo PLUGIN_PATH; ?>/datatable/responsive.bootstrap4.min.js"></script>
 <!-- Fullside-menu Js-->
 <script src="<?php echo PLUGIN_PATH; ?>/toggle-sidebar/js/sidemenu.js"></script>
+<!-- file uploads js -->
+<script src="<?php echo PLUGIN_PATH; ?>/fileuploads/js/dropify.min.js"></script>
 <!-- Custom scroll bar Js-->
 <script src="<?php echo PLUGIN_PATH; ?>/customscroll/jquery.mCustomScrollbar.concat.min.js"></script>
 <!-- peitychart -->
@@ -33,6 +35,7 @@
 <script src="<?php echo PLUGIN_PATH; ?>/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <!-- Adon JS -->
 <script src="<?php echo JS_PATH; ?>/custom.js"></script>
+<script src="<?php echo JS_PATH; ?>/othercharts.js"></script>
 <script src="<?php echo JS_PATH; ?>/datatable.js"></script>
 <script src="<?php echo JS_PATH; ?>/iziToast.min.js"></script>
 <script src="<?php echo JS_PATH; ?>/main.js?v=<?php echo time(); ?>"></script>

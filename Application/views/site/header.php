@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
     <!-- Icons -->
     <link href="<?php echo CSS_PATH; ?>/icons.css" rel="stylesheet">
+    <!-- form Uploads -->
+    <link href="<?php echo PLUGIN_PATH; ?>/fileuploads/css/dropify.css" rel="stylesheet" type="text/css" />
     <!--Bootstrap.min css-->
     <link rel="stylesheet" href="<?php echo PLUGIN_PATH; ?>/bootstrap/css/bootstrap.min.css">
     <!-- Dashboard CSS -->
