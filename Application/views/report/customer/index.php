@@ -13,6 +13,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Ad Soyad</th>
+                                <th>Kesilen Faturalar</th>
+                                <th>Alınan Faturalar</th>
                                 <th>Alınan Ürün Adeti</th>
                                 <th>Satılan Ürün Adeti</th>
                                 <th>Harcanan Tutar</th>
@@ -23,15 +25,20 @@
                             <tbody>
                             <?php
                             if(!empty($data)){
-                                foreach ($data as $d){ ?>
+                                foreach ($data as $d){
+                                    $toplamKesilenFaturaTutari  = $this->model("reportModel")->invoiceActionReport($d->id);
+                                    $toplamAlinanFaturaTutari   = $this->model("reportModel")->invoiceActionReport($d->id, 1);
+                                    ?>
                                     <tr class="datatable-row row_<?php echo $d->id; ?>">
                                         <td><?php echo $d->id; ?></td>
                                         <td><?php echo $d->name." ".$d->surname; ?></td>
+                                        <td><?php echo helper::currencyPrice($toplamKesilenFaturaTutari); ?></td>
+                                        <td><?php echo helper::currencyPrice($toplamAlinanFaturaTutari); ?></td>
                                         <td><?php echo $d->received_qty; ?></td>
                                         <td><?php echo $d->sold_qty; ?></td>
                                         <td><?php echo helper::currencyPrice($d->received_price); ?></td>
                                         <td><?php echo helper::currencyPrice($d->sold_price); ?></td>
-                                        <td><?php echo helper::currencyPrice($d->sold_price - $d->received_price); ?></td>
+                                        <td><?php echo helper::currencyPrice($d->sold_price - $d->received_price - $toplamKesilenFaturaTutari + $toplamAlinanFaturaTutari); ?></td>
                                     </tr>
                                     <?php
                                 }
