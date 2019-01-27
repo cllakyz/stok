@@ -33,6 +33,13 @@
                 </ul>
             </li>
             <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-calculator"></i><span class="side-menu__label">Fatura Yönetimi</span><i class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a href="<?php echo SITE_URL; ?>/invoice" class="slide-item">Faturalar</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/invoice/add" class="slide-item">Fatura Ekle</a></li>
+                </ul>
+            </li>
+            <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-package"></i><span class="side-menu__label">Stok Yönetimi</span><i class="angle fa fa-angle-right"></i></a>
                 <ul class="slide-menu">
                     <li><a href="<?php echo SITE_URL; ?>/stock" class="slide-item">Stok İşlemleri</a></li>

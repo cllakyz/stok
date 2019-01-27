@@ -8,6 +8,8 @@ $(document).ready(function () {
         selectOtherMonths: true
     });
 
+    $('form').not('#login_form').attr("autocomplete", "off");
+
     checkSwitch();
 
     $(document).on('click', '.custom-switch-input', function () {
