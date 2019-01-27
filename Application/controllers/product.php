@@ -13,6 +13,7 @@ class product extends controller
     public function index()
     {
         $data = $this->model('productModel')->productList();
+        $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('product/index', array('data' => $data));
@@ -22,10 +23,11 @@ class product extends controller
     public function add()
     {
         $category = $this->model('categoryModel')->categoryList(1);
-        if(!$category){
-            $this->render(SITE_URL."/product");
+        if($category['status_code'] == 101){
+            helper::redirect(SITE_URL."/product");
             die;
         }
+        $category = $category['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('product/add', array('category' => $category));
@@ -46,13 +48,8 @@ class product extends controller
                 die;
             }
             $add = $this->model("productModel")->productAdd($name,$category_id,$modifiers);
-            if($add){
-                echo helper::ajaxResponse(100, "Ürün Eklendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Ürün Eklenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($add['status_code'], $add['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -63,10 +60,12 @@ class product extends controller
     {
         $category = $this->model('categoryModel')->categoryList(1);
         $data = $this->model('productModel')->productInfo($id);
-        if(!$category || !$data){
+        if($category['status_code'] == 101 || $data['status_code'] == 101){
             helper::redirect(SITE_URL."/product");
             die;
         }
+        $category = $category['data'];
+        $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('product/edit', array('category' => $category, 'data' => $data));
@@ -87,13 +86,8 @@ class product extends controller
                 die;
             }
             $update = $this->model("productModel")->productEdit($id,$name,$category_id,$modifiers);
-            if($update){
-                echo helper::ajaxResponse(100, "Ürün Düzenlendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Ürün Düzenlenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($update['status_code'], $update['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -106,13 +100,8 @@ class product extends controller
             $id = helper::cleaner($_POST['id']);
             $status = helper::cleaner($_POST['status']);
             $update = $this->model("productModel")->productChangeStatus($id,$status);
-            if($update){
-                echo helper::ajaxResponse(100, "Ürün Durumu Düzenlendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Ürün Durumu Düzenlenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($update['status_code'], $update['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -124,13 +113,8 @@ class product extends controller
         if($_POST){
             $id = helper::cleaner($_POST['id']);
             $delete = $this->model('productModel')->productDelete($id);
-            if($delete){
-                echo helper::ajaxResponse(100, "Ürün Silindi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Ürün Silinemedi");
-                die;
-            }
+            echo helper::ajaxResponse($delete['status_code'], $delete['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;

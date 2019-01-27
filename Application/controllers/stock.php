@@ -5,6 +5,7 @@ class stock extends controller
     public function index()
     {
         $data = $this->model('stockModel')->stockList();
+        $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('stock/index', array('data' => $data));
@@ -16,10 +17,13 @@ class stock extends controller
         $customer = $this->model('customerModel')->customerList(1);
         $product = $this->model('productModel')->productList(1);
         $safe = $this->model('safeModel')->safeList(1);
-        if(!$customer || !$product || !$safe){
-            $this->render(SITE_URL."/stock");
+        if($customer['status_code'] == 101 || $product['status_code'] == 101 || $safe['status_code'] == 101){
+            helper::redirect(SITE_URL."/stock");
             die;
         }
+        $product = $product['data'];
+        $customer = $customer['data'];
+        $safe = $safe['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('stock/add', array('customer' => $customer, 'product' => $product, 'safe' => $safe));
@@ -48,13 +52,8 @@ class stock extends controller
                 die;
             }
             $add = $this->model("stockModel")->stockAdd($product_id, $customer_id, $safe_id, $action_type, $quantity, $price);
-            if($add){
-                echo helper::ajaxResponse(100, "Stok Eklendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Stok Eklenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($add['status_code'], $add['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -67,10 +66,14 @@ class stock extends controller
         $customer = $this->model('customerModel')->customerList(1);
         $product = $this->model('productModel')->productList(1);
         $safe = $this->model('safeModel')->safeList(1);
-        if(!$customer || !$product || !$safe || !$data){
-            $this->render(SITE_URL."/stock");
+        if($customer['status_code'] == 101 || $product['status_code'] == 101 || $safe['status_code'] == 101 || $data['status_code'] == 101){
+            helper::redirect(SITE_URL."/stock");
             die;
         }
+        $product = $product['data'];
+        $customer = $customer['data'];
+        $safe = $safe['data'];
+        $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('stock/edit', array('data' => $data, 'customer' => $customer, 'product' => $product, 'safe' => $safe));
@@ -99,13 +102,8 @@ class stock extends controller
                 die;
             }
             $update = $this->model("stockModel")->stockEdit($id, $product_id, $customer_id, $safe_id, $action_type, $quantity, $price);
-            if($update){
-                echo helper::ajaxResponse(100, "Stok Düzenlendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Stok Düzenlenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($update['status_code'], $update['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -118,13 +116,8 @@ class stock extends controller
             $id = helper::cleaner($_POST['id']);
             $status = helper::cleaner($_POST['status']);
             $update = $this->model("stockModel")->stockChangeStatus($id,$status);
-            if($update){
-                echo helper::ajaxResponse(100, "Stok Durumu Düzenlendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Stok Durumu Düzenlenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($update['status_code'], $update['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -136,13 +129,8 @@ class stock extends controller
         if($_POST){
             $id = helper::cleaner($_POST['id']);
             $delete = $this->model('stockModel')->stockDelete($id);
-            if($delete){
-                echo helper::ajaxResponse(100, "Stok Silindi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Stok Silinemedi");
-                die;
-            }
+            echo helper::ajaxResponse($delete['status_code'], $delete['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;

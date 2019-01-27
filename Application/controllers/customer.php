@@ -14,6 +14,7 @@ class customer extends controller
     public function index()
     {
         $data = $this->model("customerModel")->customerList();
+        $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('customer/index', array('data' => $data));
@@ -44,13 +45,8 @@ class customer extends controller
                 die;
             }
             $add = $this->model("customerModel")->customerAdd($name, $surname, $email, $phone, $tc_no, $company, $address, $note);
-            if($add){
-                echo helper::ajaxResponse(100, "Müşteri Eklendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Müşteri Eklenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($add['status_code'], $add['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -60,10 +56,11 @@ class customer extends controller
     public function edit($id)
     {
         $data = $this->model("customerModel")->customerInfo($id);
-        if(!$data){
+        if($data['status_code'] == 101){
             helper::redirect(SITE_URL."/customer");
             die;
         }
+        $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('customer/edit', array('data' => $data));
@@ -85,14 +82,9 @@ class customer extends controller
                 echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
             }
-            $add = $this->model("customerModel")->customerEdit($id, $name, $surname, $email, $phone, $tc_no, $company, $address, $note);
-            if($add){
-                echo helper::ajaxResponse(100, "Müşteri Bilgileri Düzenlendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Müşteri Bilgileri Düzenlenemedi");
-                die;
-            }
+            $update = $this->model("customerModel")->customerEdit($id, $name, $surname, $email, $phone, $tc_no, $company, $address, $note);
+            echo helper::ajaxResponse($update['status_code'], $update['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -105,13 +97,8 @@ class customer extends controller
             $id = helper::cleaner($_POST['id']);
             $status = helper::cleaner($_POST['status']);
             $update = $this->model("customerModel")->customerChangeStatus($id,$status);
-            if($update){
-                echo helper::ajaxResponse(100, "Müşteri Durumu Düzenlendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Müşteri Durumu Düzenlenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($update['status_code'], $update['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -123,13 +110,8 @@ class customer extends controller
         if($_POST){
             $id = helper::cleaner($_POST['id']);
             $delete = $this->model('customerModel')->customerDelete($id);
-            if($delete){
-                echo helper::ajaxResponse(100, "Müşteri Silindi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Müşteri Silinemedi");
-                die;
-            }
+            echo helper::ajaxResponse($delete['status_code'], $delete['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;

@@ -10,9 +10,27 @@ class safeModel extends model
         $this->zaman = date('Y-m-d H:i:s');
     }
 
+    public function safeCheck($sef, $not_in=NULL)
+    {
+        $sql_text = "";
+        $sql_array = array($sef, 2);
+        if(!is_null($not_in)){
+            $sql_text .= " AND id != ?";
+            $sql_array[] = $not_in;
+        }
+        $kontrol = $this->getVar("SELECT COUNT(id) FROM $this->table WHERE sef = ? AND status != ?$sql_text", $sql_array);
+        return $kontrol;
+    }
+
     public function safeAdd($name)
     {
-        return $this->insert("INSERT INTO $this->table SET name = ?, create_date = ?",array($name,$this->zaman));
+        $sef = helper::sef($name);
+        $check = $this->safeCheck($sef);
+        if($check){
+            return array("status_code" => 101, "status_text" => "Aynı isimde birden fazla kasa bulunamaz");
+        }
+        $add = $this->insert("INSERT INTO $this->table SET name = ?, sef = ?, create_date = ?",array($name,$sef,$this->zaman));
+        return helper::outputStatus($add, "Kasa eklendi", "Kasa eklenemedi");
     }
 
     public function safeList($status=NULL)
@@ -30,26 +48,35 @@ class safeModel extends model
         foreach ($data as $d){
             $cikti[] = $d;
         }
-        return $cikti;
+        return helper::outputDataStatus($cikti, "Kasa listesi", "Kasa bulunamadı");
     }
 
     public function safeInfo($id)
     {
-        return $this->getRow("SELECT * FROM $this->table WHERE id = ?", array($id));
+        $data = $this->getRow("SELECT * FROM $this->table WHERE id = ?", array($id));
+        return helper::outputDataStatus($data, "Kasa bilgisi", "Kasa bulunamadı");
     }
 
     public function safeEdit($id,$name)
     {
-        return $this->exec("UPDATE $this->table SET name = ?, update_date = ? WHERE id = ?", array($name, $this->zaman, $id));
+        $sef = helper::sef($name);
+        $check = $this->safeCheck($sef, $id);
+        if($check){
+            return array("status_code" => 101, "status_text" => "Aynı isimde birden fazla kasa bulunamaz");
+        }
+        $update = $this->exec("UPDATE $this->table SET name = ?, sef = ?, update_date = ? WHERE id = ?", array($name, $sef, $this->zaman, $id));
+        return helper::outputStatus($update, "Kasa bilgileri güncellendi", "Kasa bilgileri güncellenemedi");
     }
 
     public function safeChangeStatus($id,$status)
     {
-        return $this->exec("UPDATE $this->table SET status = ?, update_date = ? WHERE id = ?", array($status, $this->zaman, $id));
+        $update = $this->exec("UPDATE $this->table SET status = ?, update_date = ? WHERE id = ?", array($status, $this->zaman, $id));
+        return helper::outputStatus($update, "Kasa durumu güncellendi", "Kasa durumu güncellenemedi");
     }
 
     public function safeDelete($id)
     {
-        return $this->exec("UPDATE $this->table SET status = 2, update_date = ? WHERE id = ?", array($this->zaman, $id));
+        $delete = $this->exec("UPDATE $this->table SET status = 2, update_date = ? WHERE id = ?", array($this->zaman, $id));
+        return helper::outputStatus($delete, "Kasa silindi", "Kasa silinemedi");
     }
 }

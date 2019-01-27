@@ -95,8 +95,8 @@
                                             </thead>
                                             <tbody>
                                             <?php
-                                            if($data){
-                                                foreach ($data as $d){
+                                            if($data['status_code'] == 100){
+                                                foreach ($data['data'] as $d){
                                                     $girenAdet = $this->model("reportModel")->productStockActionReport($d->id)->sumQuantity;
                                                     $girenAdet = $girenAdet ? $girenAdet : 0;
                                                     $cikanAdet = $this->model("reportModel")->productStockActionReport($d->id,1)->sumQuantity;

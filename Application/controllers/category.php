@@ -13,6 +13,7 @@ class category extends controller
     public function index()
     {
         $data = $this->model('categoryModel')->categoryList();
+        $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('category/index', array('data' => $data));
@@ -36,13 +37,8 @@ class category extends controller
                 die;
             }
             $add = $this->model("categoryModel")->categoryAdd($name);
-            if($add){
-                echo helper::ajaxResponse(100, "Kategori Eklendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Kategori Eklenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($add['status_code'], $add['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -52,10 +48,11 @@ class category extends controller
     public function edit($id)
     {
         $data = $this->model('categoryModel')->categoryInfo($id);
-        if(!$data){
+        if($data['status_code'] == 101){
             helper::redirect(SITE_URL."/category");
             die;
         }
+        $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('category/edit', array('data' => $data));
@@ -71,13 +68,8 @@ class category extends controller
                 die;
             }
             $update = $this->model("categoryModel")->categoryEdit($id,$name);
-            if($update){
-                echo helper::ajaxResponse(100, "Kategori Düzenlendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Kategori Düzenlenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($update['status_code'], $update['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -90,13 +82,8 @@ class category extends controller
             $id = helper::cleaner($_POST['id']);
             $status = helper::cleaner($_POST['status']);
             $update = $this->model("categoryModel")->categoryChangeStatus($id,$status);
-            if($update){
-                echo helper::ajaxResponse(100, "Kategori Durumu Düzenlendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Kategori Durumu Düzenlenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($update['status_code'], $update['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -108,13 +95,8 @@ class category extends controller
         if($_POST){
             $id = helper::cleaner($_POST['id']);
             $delete = $this->model('categoryModel')->categoryDelete($id);
-            if($delete){
-                echo helper::ajaxResponse(100, "Kategori Silindi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Kategori Silinemedi");
-                die;
-            }
+            echo helper::ajaxResponse($delete['status_code'], $delete['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;

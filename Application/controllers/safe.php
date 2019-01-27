@@ -13,6 +13,7 @@ class safe extends controller
     public function index()
     {
         $data = $this->model('safeModel')->safeList();
+        $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('safe/index', array('data' => $data));
@@ -36,13 +37,8 @@ class safe extends controller
                 die;
             }
             $add = $this->model("safeModel")->safeAdd($name);
-            if($add){
-                echo helper::ajaxResponse(100, "Kasa Eklendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Kasa Eklenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($add['status_code'], $add['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -52,10 +48,11 @@ class safe extends controller
     public function edit($id)
     {
         $data = $this->model('safeModel')->safeInfo($id);
-        if(!$data){
+        if($data['status_code'] == 101){
             helper::redirect(SITE_URL."/safe");
             die;
         }
+        $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
         $this->render('safe/edit', array('data' => $data));
@@ -71,13 +68,8 @@ class safe extends controller
                 die;
             }
             $update = $this->model("safeModel")->safeEdit($id,$name);
-            if($update){
-                echo helper::ajaxResponse(100, "Kasa Düzenlendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Kasa Düzenlenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($update['status_code'], $update['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -90,13 +82,8 @@ class safe extends controller
             $id = helper::cleaner($_POST['id']);
             $status = helper::cleaner($_POST['status']);
             $update = $this->model("safeModel")->safeChangeStatus($id,$status);
-            if($update){
-                echo helper::ajaxResponse(100, "Kasa Durumu Düzenlendi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Kasa Durumu Düzenlenemedi");
-                die;
-            }
+            echo helper::ajaxResponse($update['status_code'], $update['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
@@ -108,13 +95,8 @@ class safe extends controller
         if($_POST){
             $id = helper::cleaner($_POST['id']);
             $delete = $this->model('safeModel')->safeDelete($id);
-            if($delete){
-                echo helper::ajaxResponse(100, "Kasa Silindi");
-                die;
-            } else{
-                echo helper::ajaxResponse(101, "Kasa Silinemedi");
-                die;
-            }
+            echo helper::ajaxResponse($delete['status_code'], $delete['status_text']);
+            die;
         } else{
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;

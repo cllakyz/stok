@@ -7,6 +7,11 @@ class excel extends controller
         require_once PATH."/system/libs/Excel/PHPExcel.php";
         $Excel = new PHPExcel();
         $products = $this->model("productModel")->productList(1);
+        if($products['status_code'] == 101){
+            helper::redirect(SITE_URL."/product");
+            die;
+        }
+        $products = $products['data'];
         $Excel->getProperties()->setCreator($this->userInfo->name)
             ->setLastModifiedBy($this->userInfo->name)
             ->setTitle("Ürün listesi")
@@ -101,7 +106,7 @@ class excel extends controller
                     $productAddDate = helper::cleaner($cell3->getValue());
 
                     $add = $this->model("productModel")->productAdd($productName, $categoryId, $productModifiersJson, $productAddDate);
-                    if($add){
+                    if($add['status_code'] == 100){
                         $added++;
                     }
 
