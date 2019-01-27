@@ -2,7 +2,7 @@
 -- Sunucu:                       127.0.0.1
 -- Sunucu sürümü:                5.6.37 - MySQL Community Server (GPL)
 -- Sunucu İşletim Sistemi:       Win32
--- HeidiSQL Sürüm:               10.0.0.5461
+-- HeidiSQL Sürüm:               10.1.0.5464
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -20,10 +20,13 @@ CREATE TABLE IF NOT EXISTS `category` (
   `create_date` timestamp NULL DEFAULT NULL,
   `update_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- stok.category: ~3 rows (yaklaşık) tablosu için veriler indiriliyor
+-- stok.category: ~2 rows (yaklaşık) tablosu için veriler indiriliyor
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` (`id`, `name`, `sef`, `status`, `create_date`, `update_date`) VALUES
+	(1, 'Yeme-İçme', 'yeme-icme', 1, '2019-01-27 20:09:53', NULL),
+	(2, 'Spor Malzemeleri', 'spor-malzemeleri', 1, '2019-01-27 20:09:53', NULL);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
 -- tablo yapısı dökülüyor stok.customer
@@ -51,6 +54,29 @@ INSERT INTO `customer` (`id`, `name`, `surname`, `email`, `phone`, `company`, `a
 	(17, 'Burak', 'Karagöz', 'burak_deliormanli@hotmail.com', '05324785841', 'Ankara Enerji', 'Ankara', '', '12345677891', 1, '2019-01-20 23:49:42', '2019-01-27 18:50:28');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
+-- tablo yapısı dökülüyor stok.invoice
+CREATE TABLE IF NOT EXISTS `invoice` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) unsigned DEFAULT NULL,
+  `no` varchar(255) DEFAULT NULL,
+  `type` tinyint(2) DEFAULT NULL COMMENT '0:gelir, 1:gider',
+  `total` decimal(10,2) DEFAULT NULL,
+  `description` text,
+  `status` tinyint(4) DEFAULT '1' COMMENT '0:pasif, 1:aktif, 2:silinmiş',
+  `create_date` timestamp NULL DEFAULT NULL,
+  `update_date` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_invoice_customer` (`customer_id`),
+  CONSTRAINT `FK_invoice_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- stok.invoice: ~1 rows (yaklaşık) tablosu için veriler indiriliyor
+/*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
+INSERT INTO `invoice` (`id`, `customer_id`, `no`, `type`, `total`, `description`, `status`, `create_date`, `update_date`) VALUES
+	(1, 16, 'aa111', 0, 1025.44, 'aa', 1, NULL, '2019-01-27 21:49:00'),
+	(2, 15, 'aa11', 1, 1250.45, 'test', 1, '2019-01-27 21:40:27', '2019-01-27 21:49:03');
+/*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
+
 -- tablo yapısı dökülüyor stok.product
 CREATE TABLE IF NOT EXISTS `product` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -64,10 +90,15 @@ CREATE TABLE IF NOT EXISTS `product` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `FK_urunler_kategoriler` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- stok.product: ~4 rows (yaklaşık) tablosu için veriler indiriliyor
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` (`id`, `category_id`, `name`, `sef`, `modifiers`, `status`, `create_date`, `update_date`) VALUES
+	(1, 1, 'Fasulye', 'fasulye', '[{"name":"T\\u00fcr\\u00fc","value":"Kuru Fasulye"}]', 1, '2019-01-20 23:46:00', NULL),
+	(2, 1, 'Balık', 'balik', '[{"name":"T\\u00fcr\\u00fc","value":"Palamut"}]', 1, '2019-01-24 00:04:00', NULL),
+	(3, 2, 'Dumbel', 'dumbel', '[{"name":"Kilogram","value":"50"}]', 1, '2019-01-20 23:46:00', NULL),
+	(4, 2, 'Halter', 'halter', '[{"name":"Kilogram","value":"50"}]', 1, '2019-01-26 13:18:00', NULL);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
 -- tablo yapısı dökülüyor stok.safe
@@ -79,10 +110,13 @@ CREATE TABLE IF NOT EXISTS `safe` (
   `create_date` timestamp NULL DEFAULT NULL,
   `update_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- stok.safe: ~3 rows (yaklaşık) tablosu için veriler indiriliyor
+-- stok.safe: ~2 rows (yaklaşık) tablosu için veriler indiriliyor
 /*!40000 ALTER TABLE `safe` DISABLE KEYS */;
+INSERT INTO `safe` (`id`, `name`, `sef`, `status`, `create_date`, `update_date`) VALUES
+	(1, 'Kasa 1', 'kasa-1', 1, '2019-01-27 20:11:57', NULL),
+	(2, 'Kasa 2', 'kasa-2', 1, '2019-01-27 20:12:21', NULL);
 /*!40000 ALTER TABLE `safe` ENABLE KEYS */;
 
 -- tablo yapısı dökülüyor stok.stock
@@ -101,13 +135,23 @@ CREATE TABLE IF NOT EXISTS `stock` (
   KEY `product_id` (`product_id`),
   KEY `customer_id` (`customer_id`),
   KEY `FK_stock_safe` (`safe_id`),
-  CONSTRAINT `FK_stock_safe` FOREIGN KEY (`safe_id`) REFERENCES `safe` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_stock_safe` FOREIGN KEY (`safe_id`) REFERENCES `safe` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_stok_musteriler` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_stok_urunler` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- stok.stock: ~0 rows (yaklaşık) tablosu için veriler indiriliyor
+-- stok.stock: ~9 rows (yaklaşık) tablosu için veriler indiriliyor
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
+INSERT INTO `stock` (`id`, `product_id`, `customer_id`, `safe_id`, `action_type`, `quantity`, `price`, `status`, `create_date`, `update_date`) VALUES
+	(1, 1, 15, 1, 0, 100, 5.00, 1, '2019-01-27 20:12:48', NULL),
+	(2, 2, 16, 2, 0, 150, 15.00, 1, '2019-01-27 20:13:17', NULL),
+	(3, 3, 17, 1, 0, 100, 50.00, 1, '2019-01-27 20:13:36', NULL),
+	(4, 4, 17, 2, 0, 75, 75.00, 1, '2019-01-27 20:13:54', NULL),
+	(5, 2, 15, 1, 1, 85, 25.00, 1, '2019-01-27 20:14:52', '2019-01-27 20:16:10'),
+	(6, 1, 16, 2, 1, 95, 11.00, 1, '2019-01-27 20:16:57', '2019-01-27 20:17:11'),
+	(7, 3, 16, 2, 1, 95, 150.00, 1, '2019-01-27 20:18:18', NULL),
+	(8, 4, 15, 2, 1, 70, 100.00, 1, '2019-01-27 20:18:48', NULL),
+	(9, 2, 17, 1, 1, 60, 20.00, 1, '2019-01-27 20:19:45', NULL);
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 
 -- tablo yapısı dökülüyor stok.user

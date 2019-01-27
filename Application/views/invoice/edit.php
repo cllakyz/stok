@@ -50,7 +50,7 @@
                             </div>
 
                         </div>
-                        <button type="button" class="mt-2 btn btn-block btn-secondary mt-1 mb-1" onclick="post_form('invoice_edit_form')">EKLE</button>
+                        <button type="button" class="mt-2 btn btn-block btn-secondary mt-1 mb-1" onclick="post_form('invoice_edit_form')">DÜZENLE</button>
                     </div>
                 </form>
             </div>
