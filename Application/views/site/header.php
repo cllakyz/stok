@@ -81,6 +81,7 @@
                                             <h3 class="text-capitalize text-dark mb-1"><?php echo $this->userInfo->name; ?></h3>
                                             <h6 class="text-overflow m-0">Yönetici</h6>
                                         </div>
+                                        <a class="dropdown-item" href="<?php echo SITE_URL."/user/edit/".$this->userInfo->id; ?>"><i class="ni ni-single-02"></i> <span>Profilim</span></a>
                                         <a class="dropdown-item" href="<?php echo SITE_URL."/logout"; ?>"><i class="ni ni-user-run"></i> <span>Çıkış Yap</span></a>
                                     </div>
                                 </li>
