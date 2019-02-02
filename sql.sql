@@ -152,7 +152,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `permission` text,
-  `status` varchar(255) DEFAULT '1',
+  `status` tinyint(1) DEFAULT '1',
+  `token` varchar(255) DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   `update_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -160,9 +161,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 -- stok.user: ~2 rows (yaklaşık) tablosu için veriler indiriliyor
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `name`, `email`, `password`, `permission`, `status`, `create_date`, `update_date`) VALUES
-	(1, 'Celal Akyüz', 'celal7174@gmail.com', '3acd0be86de7dcccdbf91b20f94a68cea535922d', NULL, '1', '2018-12-22 23:34:37', '2019-01-29 23:59:52'),
-	(2, 'Test Test', 'Test@test.com', '9517143165a529aafc4daba5c47d0666dc6b954a', NULL, '1', '2019-01-29 23:40:28', '2019-01-29 23:57:18');
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `permission`, `status`, `token`, `create_date`, `update_date`) VALUES
+	(1, 'Celal Akyüz', 'celal7174@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '["category","customer","invoice","product","report","safe","stock","user"]', 1, '115491058655c557ac9efbae', '2018-12-22 23:34:37', '2019-02-02 13:41:54'),
+	(2, 'Test Test', 'Test@test.com', '9517143165a529aafc4daba5c47d0666dc6b954a', NULL, 1, NULL, '2019-01-29 23:40:28', '2019-01-29 23:57:18');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
