@@ -32,7 +32,8 @@
     <link href="<?php echo PLUGIN_PATH; ?>/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
     <!-- iziToast Css -->
     <link href="<?php echo CSS_PATH; ?>/iziToast.min.css" rel="stylesheet" type="text/css">
-
+    <!--Select2 css-->
+    <link rel="stylesheet" href="<?php echo PLUGIN_PATH; ?>/select2/select2.css">
     <script>
         var site_url = "<?php echo SITE_URL; ?>";
     </script>

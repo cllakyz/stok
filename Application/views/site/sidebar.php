@@ -75,6 +75,16 @@
                 </li>
             <?php
             }
+            if($this->model('userModel')->checkPermissionControl($this->userId, "order")){ ?>
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-shopping-cart"></i><span class="side-menu__label">Sipariş Yönetimi</span><i class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li><a href="<?php echo SITE_URL; ?>/order" class="slide-item">Siparişler</a></li>
+                        <li><a href="<?php echo SITE_URL; ?>/order/add" class="slide-item">Sipariş Ekle</a></li>
+                    </ul>
+                </li>
+                <?php
+            }
             if($this->model('userModel')->checkPermissionControl($this->userId, "report")){ ?>
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-bar-chart-2"></i><span class="side-menu__label">Raporlar</span><i class="angle fa fa-angle-right"></i></a>

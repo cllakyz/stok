@@ -3,6 +3,8 @@ $(document).ready(function () {
 
     $('[data-toggle="tooltip"]').tooltip();
 
+    $('.select2').select2();
+
     if($('.datepicker').length > 0){
         $('.datepicker').datepicker({
             showOtherMonths: true,

@@ -21,6 +21,7 @@ define('PERMISSIONS', array(
     'category'  => 'Kategoriler',
     'customer'  => 'Müşteriler',
     'invoice'   => 'Faturalar',
+    'order'     => 'Siparişler',
     'product'   => 'Ürünler',
     'report'    => 'Raporlar',
     'safe'      => 'Kasalar',

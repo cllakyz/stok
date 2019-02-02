@@ -2,7 +2,7 @@
 -- Sunucu:                       127.0.0.1
 -- Sunucu sürümü:                5.6.37 - MySQL Community Server (GPL)
 -- Sunucu İşletim Sistemi:       Win32
--- HeidiSQL Sürüm:               10.1.0.5471
+-- HeidiSQL Sürüm:               10.1.0.5472
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -75,6 +75,29 @@ CREATE TABLE IF NOT EXISTS `invoice` (
 INSERT INTO `invoice` (`id`, `customer_id`, `no`, `type`, `total`, `description`, `status`, `create_date`, `update_date`) VALUES
 	(8, 15, 'a5000', 1, 5000.00, 'Balık için ödendi', 1, '2019-01-27 22:59:27', NULL);
 /*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
+
+-- tablo yapısı dökülüyor stok.orders
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) unsigned NOT NULL,
+  `user_id` int(11) unsigned NOT NULL,
+  `products` text,
+  `total_price` decimal(10,2) DEFAULT NULL,
+  `order_date` date DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `create_date` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_orders_customer` (`customer_id`),
+  KEY `FK_orders_user` (`user_id`),
+  CONSTRAINT `FK_orders_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_orders_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- stok.orders: ~1 rows (yaklaşık) tablosu için veriler indiriliyor
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` (`id`, `customer_id`, `user_id`, `products`, `total_price`, `order_date`, `status`, `create_date`) VALUES
+	(3, 15, 2, '["2"]', 140.00, '2019-02-22', 1, '2019-02-03 00:49:48');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
 -- tablo yapısı dökülüyor stok.product
 CREATE TABLE IF NOT EXISTS `product` (

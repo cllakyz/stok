@@ -20,6 +20,8 @@
 <script src="<?php echo PLUGIN_PATH; ?>/datatable/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo PLUGIN_PATH; ?>/datatable/dataTables.responsive.min.js"></script>
 <script src="<?php echo PLUGIN_PATH; ?>/datatable/responsive.bootstrap4.min.js"></script>
+<!--Select2 js-->
+<script src="<?php echo PLUGIN_PATH; ?>/select2/select2.full.js"></script>
 <!-- Fullside-menu Js-->
 <script src="<?php echo PLUGIN_PATH; ?>/toggle-sidebar/js/sidemenu.js"></script>
 <!-- file uploads js -->
