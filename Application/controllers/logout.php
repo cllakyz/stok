@@ -13,13 +13,14 @@ class logout extends controller
 
     public function index()
     {
-        unset($_SESSION['email']);
-        unset($_SESSION['password']);
+        DB::exec("UPDATE user SET token = ? WHERE id = ?", array(NULL, $_SESSION['loginUserId']));
+        unset($_SESSION['loginUserId']);
+        unset($_SESSION['loginUserToken']);
 
-        setcookie("email", null, -1, "/");
-        setcookie("password", null, -1, "/");
-        unset($_COOKIE['email']);
-        unset($_COOKIE['password']);
+        setcookie("loginUserId", null, -1, "/");
+        setcookie("loginUserToken", null, -1, "/");
+        unset($_COOKIE['loginUserId']);
+        unset($_COOKIE['loginUserToken']);
 
         helper::redirect(SITE_URL);
         die;

@@ -26,15 +26,15 @@ class session extends model
     public function isLogged()
     {
         $out = false;
-        if(self::exists('email') and self::exists('password')){
-            $userInfo = $this->getRow("SELECT * FROM user WHERE email=? AND password=? AND status=1", array(self::get('email'),self::get('password')));
+        if(self::exists('loginUserId') and self::exists('loginUserToken')){
+            $userInfo = $this->getRow("SELECT * FROM user WHERE id = ? AND token = ? AND status = 1", array(self::get('loginUserId'),self::get('loginUserToken')));
             if($userInfo){
                 $out = true;
             }
-        } elseif(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
-            $userInfo = $this->getRow("SELECT * FROM user WHERE email=? AND password=? AND status=1", array($_COOKIE['email'],$_COOKIE['password']));
+        } elseif(isset($_COOKIE['loginUserId']) && isset($_COOKIE['loginUserToken'])){
+            $userInfo = $this->getRow("SELECT * FROM user WHERE id = ? AND token = ? AND status = 1", array($_COOKIE['loginUserId'],$_COOKIE['loginUserToken']));
             if($userInfo){
-                self::set(array('email' => $_COOKIE['email'], 'password' => $_COOKIE['password']));
+                self::set(array('loginUserId' => $_COOKIE['loginUserId'], 'loginUserToken' => $_COOKIE['loginUserToken']));
                 $out = true;
             }
         }
@@ -45,7 +45,7 @@ class session extends model
     {
         $out = false;
         if($this->isLogged()){
-            $out = $this->getRow("SELECT * FROM user WHERE email=? AND password=? AND status=1", array(self::get('email'),self::get('password')));
+            $out = $this->getRow("SELECT * FROM user WHERE id = ? AND token = ? AND status = 1", array(self::get('loginUserId'),self::get('loginUserToken')));
         }
         return $out;
     }

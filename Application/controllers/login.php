@@ -14,9 +14,11 @@ class login extends controller
             if($email != "" and $password != ""){
                 $control = $this->model("userModel")->control($email,$password);
                 if($control){
-                    setcookie("email", $control->email, time() + 365*24*60*60, "/");
-                    setcookie("password", $control->password, time() + 365*24*60*60, "/");
-                    session::set(array('email' => $control->email, 'password' => $control->password));
+                    $token = $control->token != "" ? $control->token : $control->id.uniqid(time());
+                    setcookie("loginUserId", $control->id, time() + 365*24*60*60, "/");
+                    setcookie("loginUserToken", $token, time() + 365*24*60*60, "/");
+                    session::set(array('loginUserId' => $control->id, 'loginUserToken' => $token));
+                    DB::exec("UPDATE user SET token = ? WHERE id = ?", array($token, $control->id));
                     echo helper::ajaxResponse(100, "Giriş Başarılı");
                     die;
                 } else{

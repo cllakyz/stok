@@ -76,17 +76,6 @@ class userModel extends model
         }
         $sql_array[] = $id;
         $update = $this->exec("UPDATE $this->table SET name = ?, email = ?, permission = ?, update_date = ?$sql_text WHERE id = ?", $sql_array);
-        if($update){
-            $editedUserInfo = $this->userInfo($id)['data'];
-            if(session::get('email') != $editedUserInfo->email){
-                session::set(array('email' => $editedUserInfo->email));
-                setcookie("email", $editedUserInfo->email, time() + 365*24*60*60, "/");
-            }
-            if(session::get("password") != $editedUserInfo->password){
-                setcookie("password", $editedUserInfo->password, time() + 365*24*60*60, "/");
-                session::set(array('password' => $editedUserInfo->password));
-            }
-        }
         return helper::outputStatus($update, "Kullanıcı bilgileri güncellendi", "Kullanıcı bilgileri güncellenemedi");
     }
 
