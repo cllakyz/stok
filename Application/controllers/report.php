@@ -5,7 +5,7 @@ class report extends controller
     public function __construct()
     {
         parent::__construct();
-        if(!$this->session->isLogged()){
+        if(!$this->session->isLogged() || !$this->model('userModel')->checkPermissionControl($this->userId, "report")){
             helper::redirect(SITE_URL);
             die;
         }

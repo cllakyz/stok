@@ -90,4 +90,17 @@ class userModel extends model
         $delete = $this->exec("UPDATE $this->table SET status = 2, update_date = ? WHERE id = ?", array($this->zaman, $id));
         return helper::outputStatus($delete, "Kullanıcı silindi", "Kullanıcı silinemedi");
     }
+
+    public function checkPermissionControl($userId, $pageUrl)
+    {
+        $kontrol = true;
+        $userInfo = $this->userInfo($userId)['data'];
+        if($userInfo->permission != ""){
+            $permissions = json_decode($userInfo->permission, TRUE);
+            if(!in_array($pageUrl, $permissions)){
+                $kontrol = false;
+            }
+        }
+        return $kontrol;
+    }
 }

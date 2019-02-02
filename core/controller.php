@@ -3,11 +3,13 @@ class controller
 {
     public $session;
     public $userInfo;
+    public $userId;
 
     public function __construct()
     {
         $this->session = new session();
         $this->userInfo = $this->session->getUserInfo();
+        $this->userId = $this->userInfo->id;
     }
 
     public function render($file, array $params = [])

@@ -2,6 +2,15 @@
 
 class stock extends controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        if(!$this->session->isLogged() || !$this->model('userModel')->checkPermissionControl($this->userId, "stock")){
+            helper::redirect(SITE_URL);
+            die;
+        }
+    }
+
     public function index()
     {
         $data = $this->model('stockModel')->stockList();
