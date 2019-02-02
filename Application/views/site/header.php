@@ -8,7 +8,7 @@
     <!-- Title -->
     <title>Stok Takip Programı</title>
     <!-- Favicon -->
-    <link href="<?php echo IMG_PATH; ?>/brand/stok-favicon.png" rel="icon" type="image/png">
+    <link href="<?php echo IMG_PATH; ?>/brand/stok-logo.png" rel="icon" type="image/png">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
     <!-- Icons -->

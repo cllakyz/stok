@@ -3,10 +3,12 @@ $(document).ready(function () {
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    $('.datepicker').datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
+    if($('.datepicker').length > 0){
+        $('.datepicker').datepicker({
+            showOtherMonths: true,
+            selectOtherMonths: true
+        });
+    }
 
     $('form').not('#login_form').attr("autocomplete", "off");
 

@@ -35,6 +35,10 @@ class user extends controller
             $email              = helper::cleaner($_POST['email']);
             $password           = helper::cleaner($_POST['password']);
             $password_repeat    = helper::cleaner($_POST['password_repeat']);
+            $permissions        = NULL;
+            if(count($_POST['permissions'])){
+                $permissions    = $_POST['permissions'];
+            }
             if($name == "" || $email == "" || $password == "" || $password_repeat == ""){
                 echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
@@ -43,7 +47,7 @@ class user extends controller
                 echo helper::ajaxResponse(101, "Girilen Şifreler Eşit Değil");
                 die;
             }
-            $add = $this->model("userModel")->userAdd($name, $email, $password);
+            $add = $this->model("userModel")->userAdd($name, $email, $password, json_encode($permissions));
             echo helper::ajaxResponse($add['status_code'], $add['status_text']);
             die;
         } else{
@@ -73,15 +77,24 @@ class user extends controller
             $email              = helper::cleaner($_POST['email']);
             $password           = helper::cleaner($_POST['password']);
             $password_repeat    = helper::cleaner($_POST['password_repeat']);
+            $permissions        = NULL;
+            if(count($_POST['permissions'])){
+                $permissions    = $_POST['permissions'];
+            }
             if($name == "" || $email == ""){
                 echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
             }
-            if($password != $password_repeat){
-                echo helper::ajaxResponse(101, "Girilen Şifreler Eşit Değil");
-                die;
+            if($password != ""){
+                if($password != $password_repeat){
+                    echo helper::ajaxResponse(101, "Girilen Şifreler Eşit Değil");
+                    die;
+                }
+            } else{
+                $password = NULL;
             }
-            $update = $this->model("userModel")->userEdit($id, $name, $email, $password);
+
+            $update = $this->model("userModel")->userEdit($id, $name, $email, json_encode($permissions), $password);
             echo helper::ajaxResponse($update['status_code'], $update['status_text']);
             die;
         } else{

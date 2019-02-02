@@ -29,6 +29,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Yetkiler</h3>
+                                <div class="selectgroup selectgroup-pills">
+                                    <?php
+                                    foreach (PERMISSIONS as $key => $value){ ?>
+                                        <label class="selectgroup-item">
+                                            <input type="checkbox" name="permissions[]" value="<?php echo $key; ?>" class="selectgroup-input">
+                                            <span class="selectgroup-button"><?php echo $value; ?></span>
+                                        </label>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
                         <button type="button" class="mt-2 btn btn-block btn-secondary mt-1 mb-1" onclick="post_form('user_add_form')">EKLE</button>
                     </div>
                 </form>

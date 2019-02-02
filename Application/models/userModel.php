@@ -28,13 +28,13 @@ class userModel extends model
         return $kontrol;
     }
 
-    public function userAdd($name, $email, $pass)
+    public function userAdd($name, $email, $pass, $permission)
     {
         $check = $this->userCheck($email);
         if($check){
             return array('status_code' => 101, 'status_text' => "Aynı e-posta'ya sahip birden fazla kullanıcı olamaz");
         }
-        $add = $this->insert("INSERT INTO $this->table SET name = ?, email = ?, password = ?, create_date = ?",array($name, $email, sha1($pass), $this->zaman));
+        $add = $this->insert("INSERT INTO $this->table SET name = ?, email = ?, password = ?, permission = ?, create_date = ?",array($name, $email, sha1($pass), $permission, $this->zaman));
         return helper::outputDataStatus($add, "Kullanıcı eklendi", "Kullanıcı eklenemedi");
     }
 
@@ -62,29 +62,27 @@ class userModel extends model
         return helper::outputDataStatus($data, "Kullanıcı bilgileri", "Kullanıcı bulunamadı");
     }
 
-    public function userEdit($id, $name, $email, $pass=NULL)
+    public function userEdit($id, $name, $email, $permission, $pass=NULL)
     {
         $check = $this->userCheck($email,$id);
         if($check){
             return array("status_code" => 101, "status_text" => "Aynı e-posta'ya sahip birden fazla kullanıcı olamaz");
         }
         $sql_text = "";
-        $sql_array = array($name, $email, $this->zaman);
+        $sql_array = array($name, $email, $permission, $this->zaman);
         if(!is_null($pass)){
             $sql_text .= ", password = ?";
             $sql_array[] = sha1($pass);
         }
         $sql_array[] = $id;
-        $update = $this->exec("UPDATE $this->table SET name = ?, email = ?, update_date = ?$sql_text WHERE id = ?", $sql_array);
+        $update = $this->exec("UPDATE $this->table SET name = ?, email = ?, permission = ?, update_date = ?$sql_text WHERE id = ?", $sql_array);
         if($update){
-            $session = new session();
-            $loginUserInfo = $session->getUserInfo();
-            $editedUserInfo = $this->userInfo($id);
-            if($loginUserInfo->email != $editedUserInfo->email){
+            $editedUserInfo = $this->userInfo($id)['data'];
+            if(session::get('email') != $editedUserInfo->email){
                 session::set(array('email' => $editedUserInfo->email));
                 setcookie("email", $editedUserInfo->email, time() + 365*24*60*60, "/");
             }
-            if($loginUserInfo->password != $editedUserInfo->password){
+            if(session::get("password") != $editedUserInfo->password){
                 setcookie("password", $editedUserInfo->password, time() + 365*24*60*60, "/");
                 session::set(array('password' => $editedUserInfo->password));
             }

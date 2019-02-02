@@ -17,3 +17,13 @@ define('MYSQL_USER',	'root');
 define('MYSQL_PASS',	'mysql');
 
 date_default_timezone_set("Europe/Istanbul");
+define('PERMISSIONS', array(
+    'category'  => 'Kategoriler',
+    'customer'  => 'Müşteriler',
+    'invoice'   => 'Faturalar',
+    'product'   => 'Ürünler',
+    'report'    => 'Raporlar',
+    'safe'      => 'Kasalar',
+    'stock'     => 'Stok İşlemleri',
+    'user'      => 'Kullanıcılar',
+));
