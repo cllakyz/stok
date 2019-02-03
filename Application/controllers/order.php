@@ -23,31 +23,32 @@ class order extends controller
     public function add()
     {
         $customer = $this->model('customerModel')->customerList(1);
-        $product = $this->model('productModel')->productList(1);
-        if($customer['status_code'] == 101 || $product['status_code'] == 101){
+        if($customer['status_code'] == 101){
             helper::redirect(SITE_URL."/order");
             die;
         }
-        $product = $product['data'];
         $customer = $customer['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
-        $this->render('order/add', array('customer' => $customer, 'product' => $product));
+        $this->render('order/add', array('customer' => $customer));
         $this->render('site/footer');
     }
 
     public function send()
     {
         if($_POST){
-            $products = $_POST['products'];
             $customer_id = helper::cleaner($_POST['customer_id']);
             $order_date = date('Y-m-d', strtotime(helper::cleaner($_POST['order_date'])));
-            $total_price = helper::cleaner($_POST['total_price']);
-            if(count($products) == 0 || $customer_id == "" || $order_date == "" || $total_price == 0){
+            $product = $_POST['product'];
+            if(count($product) == 0 || $customer_id == "" || $order_date == ""){
                 echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
             }
-            $add = $this->model("orderModel")->orderAdd($customer_id, $this->userId, json_encode($products), $total_price, $order_date);
+            $total_price = 0;
+            foreach ($product as $p){
+                $total_price += $p['unit'] * $p['price'];
+            }
+            $add = $this->model("orderModel")->orderAdd($customer_id, $this->userId, json_encode($product), $total_price, $order_date);
             echo helper::ajaxResponse($add['status_code'], $add['status_text']);
             die;
         } else{
@@ -112,5 +113,16 @@ class order extends controller
             echo helper::ajaxResponse(101, "Hatalı Giriş");
             die;
         }
+    }
+
+    public function getProductList()
+    {
+        $product = $this->model('productModel')->productList(1);
+        $data = array();
+        if($product['status_code'] == 100){
+            $data = $product['data'];
+        }
+        echo helper::ajaxResponse($product['status_code'], $product['status_text'], $data);
+        die;
     }
 }

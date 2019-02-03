@@ -10,18 +10,21 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Ürün Seçimi</label>
-                                    <select name="products[]" class="form-control select2 w-100 required" multiple data-placeholder="Ürün seçiniz">
+                                    <label>Müşteri</label>
+                                    <select name="customer_id" class="form-control required">
+                                        <option value="">Müşteri seçiniz</option>
                                         <?php
-                                        if(count($product) > 0){
-                                            foreach ($product as $p){ ?>
-                                                <option value="<?php echo $p->id; ?>"><?php echo $p->name; ?></option>
+                                        if(count($customer) > 0){
+                                            foreach ($customer as $c){ ?>
+                                                <option value="<?php echo $c->id; ?>"><?php echo $c->name." ".$c->surname; ?></option>
                                                 <?php
                                             }
                                         }
                                         ?>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Sipariş Tarihi</label>
                                     <div class="input-group">
@@ -34,26 +37,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Müşteri</label>
-                                    <select name="customer_id" class="form-control select2 w-100 required">
-                                        <option value="">Müşteri seçiniz</option>
-                                        <?php
-                                        if(count($customer) > 0){
-                                            foreach ($customer as $c){ ?>
-                                                <option value="<?php echo $c->id; ?>"><?php echo $c->name." ".$c->surname; ?></option>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Sipariş Tutarı</label>
-                                    <input type="number" class="form-control required" name="total_price">
-                                </div>
-                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="display: block;">Ürünler</label>
+                            <a href="javascript:;" class="btn btn-info btn-add-product" data-url="<?php echo SITE_URL."/order/getProductList"; ?>">Ürün Ekle</a>
+                        </div>
+                        <div class="product-div">
+
                         </div>
                         <button type="button" class="mt-2 btn btn-block btn-secondary mt-1 mb-1" onclick="post_form('order_add_form')">EKLE</button>
                     </div>

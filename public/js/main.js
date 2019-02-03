@@ -81,6 +81,51 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).on('click', '.btn-add-product', function (e) {
+        e.preventDefault();
+        var url = $(this).attr('data-url');
+        var indis = $('.product-row').length;
+        $.post(url, {}, function (data) {
+            var data = $.parseJSON(data);
+
+            if (data.status_code == 100) {
+                var temp = '' +
+                    '<div class="row product-row">' +
+                    '<div class="col-md-4">' +
+                    '<label>Ürün</label>' +
+                    '<select name="product['+indis+'][id]" class="form-control required">' +
+                    '<option value="">Ürün Seçiniz</option>';
+                $.each(data.data, function (i, item) {
+                    temp += '<option value="'+item.id+'">'+item.name+'</option>';
+                });
+                temp += '</select>' +
+                    '</div>' +
+                    '<div class="col-md-4">' +
+                    '<label>Birim</label>' +
+                    '<input type="number" class="form-control required" name="product['+indis+'][unit]">' +
+                    '</div>' +
+                    '<div class="col-md-4">' +
+                    '<label>Birim Fiyatı</label>' +
+                    '<div class="input-group">' +
+                    '<input type="number" class="form-control required" name="product['+indis+'][price]">' +
+                    '<span class="input-group-append">' +
+                    '<button class="btn btn-danger btn-remove-product" type="button">Sil</button>' +
+                    '</span>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+                $('.product-div').append(temp);
+                indis++;
+            } else {
+                notify("error", "Hata!", data.status_text);
+            }
+        });
+    });
+    $(document).on('click', '.btn-remove-product', function (e) {
+        e.preventDefault();
+        $(this).parents('.product-row').remove();
+    });
 });
 
 function notify(type, title, message) {
