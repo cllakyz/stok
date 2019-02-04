@@ -59,27 +59,35 @@ class order extends controller
 
     public function edit($id)
     {
+        $customer = $this->model('customerModel')->customerList(1);
+        $product = $this->model('productModel')->productList(1);
         $data = $this->model('orderModel')->orderInfo($id);
-        if($data['status_code'] == 101){
+        if($data['status_code'] == 101 || $customer['status_code'] == 101 || $product['status_code'] == 101){
             helper::redirect(SITE_URL."/order");
             die;
         }
         $data = $data['data'];
         $this->render('site/header');
         $this->render('site/sidebar');
-        $this->render('order/edit', array('data' => $data));
+        $this->render('order/edit', array('data' => $data, 'customer' => $customer['data'], 'product' => $product['data']));
         $this->render('site/footer');
     }
 
     public function update($id)
     {
         if($_POST){
-            $name = helper::cleaner($_POST['name']);
-            if($name == ""){
+            $customer_id = helper::cleaner($_POST['customer_id']);
+            $order_date = date('Y-m-d', strtotime(helper::cleaner($_POST['order_date'])));
+            $product = $_POST['product'];
+            if(count($product) == 0 || $customer_id == "" || $order_date == ""){
                 echo helper::ajaxResponse(101, "Lütfen Tüm Alanları Eksiksiz Giriniz");
                 die;
             }
-            $update = $this->model("orderModel")->orderEdit($id,$name);
+            $total_price = 0;
+            foreach ($product as $p){
+                $total_price += $p['unit'] * $p['price'];
+            }
+            $update = $this->model("orderModel")->orderEdit($id,$customer_id, $this->userId, json_encode($product), $total_price, $order_date);
             echo helper::ajaxResponse($update['status_code'], $update['status_text']);
             die;
         } else{
