@@ -2,7 +2,7 @@
 -- Sunucu:                       127.0.0.1
 -- Sunucu sürümü:                5.6.37 - MySQL Community Server (GPL)
 -- Sunucu İşletim Sistemi:       Win32
--- HeidiSQL Sürüm:               10.1.0.5472
+-- HeidiSQL Sürüm:               10.1.0.5473
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -81,22 +81,24 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) unsigned NOT NULL,
   `user_id` int(11) unsigned NOT NULL,
+  `order_code` int(11) DEFAULT NULL,
   `products` text,
   `total_price` decimal(10,2) DEFAULT NULL,
   `order_date` date DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1',
   `create_date` timestamp NULL DEFAULT NULL,
+  `update_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_orders_customer` (`customer_id`),
   KEY `FK_orders_user` (`user_id`),
   CONSTRAINT `FK_orders_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_orders_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- stok.orders: ~1 rows (yaklaşık) tablosu için veriler indiriliyor
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` (`id`, `customer_id`, `user_id`, `products`, `total_price`, `order_date`, `status`, `create_date`) VALUES
-	(3, 15, 2, '["2"]', 140.00, '2019-02-22', 1, '2019-02-03 00:49:48');
+INSERT INTO `orders` (`id`, `customer_id`, `user_id`, `order_code`, `products`, `total_price`, `order_date`, `status`, `create_date`, `update_date`) VALUES
+	(5, 15, 2, 167825144, '[{"id":"1","unit":"100","price":"10"},{"id":"2","unit":"150","price":"7.5"},{"id":"3","unit":"10","price":"15"}]', 2275.00, '2019-02-18', 1, '2019-02-04 23:17:19', '2019-02-04 23:51:43');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
 -- tablo yapısı dökülüyor stok.product
