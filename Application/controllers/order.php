@@ -133,4 +133,17 @@ class order extends controller
         echo helper::ajaxResponse($product['status_code'], $product['status_text'], $data);
         die;
     }
+
+    public function detail($id)
+    {
+        $data = $this->model('orderModel')->orderInfo($id);
+        if($data['status_code'] == 101){
+            helper::redirect(SITE_URL."/order");
+            die;
+        }
+        $this->render('site/header');
+        $this->render('site/sidebar');
+        $this->render('order/detail', array('data' => $data['data']));
+        $this->render('site/footer');
+    }
 }

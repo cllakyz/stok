@@ -37,7 +37,7 @@
                                             </label>
                                         </td>
                                         <td class="text-right">
-                                            <a class="btn btn-sm btn-icon btn-pill btn-info mt-1 mb-1" href="<?php echo SITE_URL."/order/edit/$d->id"; ?>" data-toggle="tooltip" data-placement="top" title="Detay">
+                                            <a class="btn btn-sm btn-icon btn-pill btn-info mt-1 mb-1" href="<?php echo SITE_URL."/order/detail/$d->id"; ?>" data-toggle="tooltip" data-placement="top" title="Detay">
                                                 <span class="btn-inner--icon"><i class="fe fe-search"></i></span>
                                             </a>
                                             <a class="btn btn-sm btn-icon btn-pill btn-success mt-1 mb-1" href="<?php echo SITE_URL."/order/edit/$d->id"; ?>" data-toggle="tooltip" data-placement="top" title="Düzenle">
