@@ -2,7 +2,7 @@
 -- Sunucu:                       127.0.0.1
 -- Sunucu sürümü:                5.6.37 - MySQL Community Server (GPL)
 -- Sunucu İşletim Sistemi:       Win32
--- HeidiSQL Sürüm:               10.1.0.5473
+-- HeidiSQL Sürüm:               10.1.0.5546
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS `category` (
 -- stok.category: ~2 rows (yaklaşık) tablosu için veriler indiriliyor
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
 INSERT INTO `category` (`id`, `name`, `sef`, `status`, `create_date`, `update_date`) VALUES
-	(1, 'Yeme-İçme', 'yeme-icme', 1, '2019-01-27 20:09:53', NULL),
-	(2, 'Spor Malzemeleri', 'spor-malzemeleri', 1, '2019-01-27 20:09:53', NULL);
+	(1, 'Yeme-İçme', 'yeme-icme', 1, '2019-01-27 20:09:53', '2019-04-29 22:42:06'),
+	(2, 'Spor Malzemeleri', 'spor-malzemeleri', 1, '2019-01-27 20:09:53', '2019-04-29 22:42:08');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
 -- tablo yapısı dökülüyor stok.customer
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `permission`, `status`, `token`, `create_date`, `update_date`) VALUES
 	(1, 'Celal Akyüz', 'celal7174@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '["category","customer","invoice","product","report","safe","stock","user"]', 1, NULL, '2018-12-22 23:34:37', '2019-02-02 13:41:54'),
-	(2, 'Test Test', 'test@test.com', '3acd0be86de7dcccdbf91b20f94a68cea535922d', NULL, 1, '215491088165c558650ca5b0', '2019-01-29 23:40:28', '2019-02-02 14:57:26');
+	(2, 'Test Test', 'test@test.com', '3acd0be86de7dcccdbf91b20f94a68cea535922d', '["category","customer","invoice","order","product","report","safe","stock","user"]', 1, '215491088165c558650ca5b0', '2019-01-29 23:40:28', '2019-04-27 11:14:14');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
