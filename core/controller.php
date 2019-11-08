@@ -8,8 +8,10 @@ class controller
     public function __construct()
     {
         $this->session = new session();
-        $this->userInfo = $this->session->getUserInfo();
-        $this->userId = $this->userInfo->id;
+        if($this->session->getUserInfo()){
+            $this->userInfo = $this->session->getUserInfo();
+            $this->userId = $this->userInfo->id;
+        }
     }
 
     public function render($file, array $params = [])
