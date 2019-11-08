@@ -51,6 +51,8 @@ class DB {
 
 		self::$pdo->exec('SET NAMES `' . self::$charset . '`');
 		self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+		self::$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+		self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		return self::$pdo;
 	}

@@ -14,7 +14,7 @@ define("PLUGIN_PATH", SITE_URL."/public/plugins");
 define('MYSQL_HOST',	'localhost');
 define('MYSQL_DB',		'stok');
 define('MYSQL_USER',	'root');
-define('MYSQL_PASS',	'mysql');
+define('MYSQL_PASS',	'');
 
 date_default_timezone_set("Europe/Istanbul");
 define('PERMISSIONS', array(

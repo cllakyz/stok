@@ -24,7 +24,7 @@
                                 foreach ($data as $d){ ?>
                                     <tr class="datatable-row row_<?php echo $d->id; ?>">
                                         <td><?php echo $d->id; ?></td>
-                                        <td><?php echo $d->name." ".$d->surname; ?></td>
+                                        <td><?php echo $d->name; ?></td>
                                         <td><?php echo $d->email; ?></td>
                                         <td><?php echo date('d/m/Y H:i', strtotime($d->create_date)); ?></td>
                                         <td class="text-center">
